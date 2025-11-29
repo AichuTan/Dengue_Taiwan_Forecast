@@ -1,0 +1,8 @@
+{
+  "n_input": 16,
+  "num_heads": 2,
+  "ff_dim": 64,
+  "dropout": 0.0,
+  "lr": 0.001,
+  "batch_size": 64
+}
