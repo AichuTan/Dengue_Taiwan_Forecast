@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+.pynb_checkpoints/
+.venv/
+
+#MLflow
+mlruns/
+
+Data files
+*.csv
+
+# OS and secret info
+.DS_Store
+*.env
+*.pkl
