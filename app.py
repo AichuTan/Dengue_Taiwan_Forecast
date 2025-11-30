@@ -304,14 +304,20 @@ def plot_rf_test(dates, y_test, y_pred, city, title_prefix="Tuned Random Forest"
     ax.grid(True, alpha=0.3)
     return fig
 
-def plot_feature_importance(fi, title):
-    fig, ax = plt.subplots(figsize=(6,6))
-    fi.head(20).plot(kind="barh", ax=ax)
+def plot_feature_importance(fi, title, top_n=8):
+    # ensure we take the *most* important features
+    fi_top = fi.sort_values(ascending=False).head(top_n)
+    # for a nice bottom-to-top order in the plot
+    fi_top = fi_top.sort_values(ascending=True)
+
+    fig, ax = plt.subplots(figsize=(6, 4))
+    fi_top.plot(kind="barh", ax=ax)
     ax.invert_yaxis()
     ax.set_title(title)
     ax.set_xlabel("Importance")
     fig.tight_layout()
     return fig
+
 
 
 def plot_model_test(dates, y_test, y_pred, city, title_prefix):
@@ -453,7 +459,7 @@ def main():
             fi = fi_df.set_index(fi_df.columns[0])["importance"]
             st.pyplot(
                 plot_feature_importance(
-                    fi, "Top 20 Feature Importances (Random Forest)"
+                    fi, "Top 8 Feature Importances (Random Forest)"
                 )
             )
 
@@ -481,7 +487,7 @@ def main():
             fi = fi_df.set_index(fi_df.columns[0])["importance"]
             st.pyplot(
                 plot_feature_importance(
-                    fi, "Top 20 Feature Importances (XGBoost)"
+                    fi, "Top 8 Feature Importances (XGBoost)"
                 )
             )
 
