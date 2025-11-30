@@ -13,3 +13,6 @@ Data files
 .DS_Store
 *.env
 *.pkl
+
+
+*.toml

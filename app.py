@@ -5,6 +5,47 @@ import seaborn as sns
 import json
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from sklearn.preprocessing import MinMaxScaler
+import io
+from supabase import create_client, Client
+
+
+
+# ------------------------------------------------------------------
+# Supabase setup
+# ------------------------------------------------------------------
+@st.cache_resource
+def get_supabase_client() -> Client:
+    """
+    Create a single Supabase client (cached across reruns).
+    """
+    url = st.secrets["SUPABASE_URL"]
+    key = st.secrets["SUPABASE_ANON_KEY"]
+    return create_client(url, key)
+
+
+ARTIFACTS_BUCKET = st.secrets.get("SUPABASE_BUCKET_ARTIFACTS", "artifacts")
+
+
+def read_csv_from_supabase(path: str, parse_dates=None) -> pd.DataFrame:
+    """
+    Download a CSV file from Supabase Storage and return as DataFrame.
+    Expects objects like 'rf_ks_predictions.csv' in bucket 'artifacts'.
+    """
+    sb = get_supabase_client()
+    data: bytes = sb.storage.from_(ARTIFACTS_BUCKET).download(path)
+    buffer = io.BytesIO(data)
+    return pd.read_csv(buffer, parse_dates=parse_dates)
+
+
+def read_json_from_supabase(path: str) -> dict:
+    """
+    Download a JSON file from Supabase Storage and return as dict.
+    """
+    sb = get_supabase_client()
+    data: bytes = sb.storage.from_(ARTIFACTS_BUCKET).download(path)
+    text = data.decode("utf-8")
+    return json.loads(text)
+
 
 # ------------------------------------------------------------------
 # 0.  Utility: prepare_weekly_city
@@ -57,9 +98,11 @@ def prepare_weekly_city(df_raw, city_name):
 # ------------------------------------------------------------------
 @st.cache_data
 def load_raw():
-    df = pd.read_csv("data/3_df_merged_cleaned.csv")
+    # File in bucket: artifacts / 3_df_merged_cleaned.csv
+    df = read_csv_from_supabase("3_df_merged_cleaned.csv")
     df["Date"] = pd.to_datetime(df["Date"])
     return df
+
 
 
 
@@ -72,24 +115,68 @@ CITY_CODE = {
 @st.cache_data
 def load_rf_results(city):
     code = CITY_CODE[city]
-    pred_df = pd.read_csv(f"artifacts/rf_{code}_predictions.csv",
-                          parse_dates=["Date"])
-    with open(f"artifacts/rf_{code}_metrics.json") as f:
-        metrics = json.load(f)
-    fi_df = pd.read_csv(f"artifacts/rf_{code}_feature_importance.csv")
+    pred_df = read_csv_from_supabase(
+        f"rf_{code}_predictions.csv",
+        parse_dates=["Date"]
+    )
+    metrics = read_json_from_supabase(f"rf_{code}_metrics.json")
+    fi_df = read_csv_from_supabase(f"rf_{code}_feature_importance.csv")
     return pred_df, metrics, fi_df
+
+
 
 @st.cache_data
 def load_xgb_results(city: str):
     code = CITY_CODE[city]
-    pred_df = pd.read_csv(
-        f"artifacts/xg_{code}_predictions.csv",
+    pred_df = read_csv_from_supabase(
+        f"xg_{code}_predictions.csv",
         parse_dates=["Date"]
     )
-    with open(f"artifacts/xg_{code}_metrics.json") as f:
-        metrics = json.load(f)
-    fi_df = pd.read_csv(f"artifacts/xg_{code}_feature_importance.csv")
+    metrics = read_json_from_supabase(f"xg_{code}_metrics.json")
+    fi_df = read_csv_from_supabase(f"xg_{code}_feature_importance.csv")
     return pred_df, metrics, fi_df
+@st.cache_data
+def load_lstm_lag_artifacts(city: str):
+    code = CITY_CODE[city]
+
+    pred = read_csv_from_supabase(
+        f"lstm_lag_{code}_predictions.csv",
+        parse_dates=["Date"]
+    )
+    metrics = read_json_from_supabase(f"lstm_lag_{code}_metrics.json")
+    resid = read_csv_from_supabase(
+        f"lstm_lag_{code}_residuals.csv",
+        parse_dates=["Date"]
+    )
+    return pred, metrics, resid
+
+
+@st.cache_data
+def load_lstm_att_results(city: str):
+    code = CITY_CODE[city]
+
+    pred = read_csv_from_supabase(
+        f"lstm_att_{code}_predictions.csv",
+        parse_dates=["Date"]
+    )
+    metrics = read_json_from_supabase(f"lstm_att_{code}_metrics.json")
+    resid = read_csv_from_supabase(
+        f"lstm_att_{code}_residuals.csv",
+        parse_dates=["Date"]
+    )
+    return pred, metrics, resid
+
+
+@st.cache_data
+def load_lstm_history(city: str, model_name: str):
+    """
+    model_name e.g. "lstm_lag", "lstm_att"
+    expects {model_name}_{code}_history.csv in bucket 'artifacts'
+    """
+    code = CITY_CODE[city]
+    path = f"{model_name}_{code}_history.csv"
+    return read_csv_from_supabase(path)
+
 
 # ------------------------------------------------------------------
 # 2. EDA plots
@@ -269,26 +356,18 @@ def _empty_metrics():
     return {"MSE": 0.0, "RMSE": 0.0, "MAE": 0.0, "R2": 0.0}
 
 def build_model_metrics() -> dict:
-    """
-    Build MODEL_METRICS from the metrics.json files in artifacts/.
-    Example expected files:
-      artifacts/rf_ks_metrics.json
-      artifacts/xg_ks_metrics.json
-      artifacts/lstm_lag_ks_metrics.json
-      artifacts/lstm_att_ks_metrics.json
-    """
+
     model_metrics = {}
 
     for city, code in CITY_CODE.items():
         model_metrics[city] = {}
         for model_label, prefix in MODEL_FILE_PREFIX.items():
-            metrics_path = f"artifacts/{prefix}_{code}_metrics.json"
+            metrics_path = f"{prefix}_{code}_metrics.json"
             try:
-                with open(metrics_path, "r") as f:
-                    metrics = json.load(f)
-            except FileNotFoundError:
-                # If you haven't trained this city/model yet, use zeros
+                metrics = read_json_from_supabase(metrics_path)
+            except Exception:
                 metrics = _empty_metrics()
+
 
             # Ensure all keys exist (avoid KeyError later)
             for k in ["MSE", "RMSE", "MAE", "R2"]:
@@ -302,68 +381,8 @@ def build_model_metrics() -> dict:
 MODEL_METRICS = build_model_metrics()
 
 
-# ------------------------------------------------------------------
-# 3b. LSTM artifact loaders
-# ------------------------------------------------------------------
-@st.cache_data
-def load_lstm_lag_artifacts(city: str):
-    """
-    Load LSTM(+lags) predictions, metrics, residuals for a given city.
-    Expects files like:
-      artifacts/lstm_lag_ks_predictions.csv
-      artifacts/lstm_lag_ks_metrics.json
-      artifacts/lstm_lag_ks_residuals.csv
-    """
-    code = CITY_CODE[city]
-    base = "artifacts"
-
-    pred = pd.read_csv(
-        f"{base}/lstm_lag_{code}_predictions.csv",
-        parse_dates=["Date"]
-    )
-    with open(f"{base}/lstm_lag_{code}_metrics.json") as f:
-        metrics = json.load(f)
-    resid = pd.read_csv(
-        f"{base}/lstm_lag_{code}_residuals.csv",
-        parse_dates=["Date"]
-    )
-    return pred, metrics, resid
 
 
-@st.cache_data
-def load_lstm_att_results(city: str):
-    """
-    Load LSTM+Transformer predictions, metrics, residuals for a given city.
-    Expects:
-      artifacts/lstm_att_ks_predictions.csv
-      artifacts/lstm_att_ks_metrics.json
-      artifacts/lstm_att_ks_residuals.csv
-    """
-    code = CITY_CODE[city]
-    base = "artifacts"
-
-    pred = pd.read_csv(
-        f"{base}/lstm_att_{code}_predictions.csv",
-        parse_dates=["Date"]
-    )
-    with open(f"{base}/lstm_att_{code}_metrics.json") as f:
-        metrics = json.load(f)
-    resid = pd.read_csv(
-        f"{base}/lstm_att_{code}_residuals.csv",
-        parse_dates=["Date"]
-    )
-    return pred, metrics, resid
-
-
-@st.cache_data
-def load_lstm_history(city: str, model_name: str):
-    """
-    model_name e.g. "lstm_lag", "lstm_att"
-    expects artifacts/{model_name}_{code}_history.csv
-    """
-    code = CITY_CODE[city]
-    path = f"artifacts/{model_name}_{code}_history.csv"
-    return pd.read_csv(path)
 
 
 # ------------------------------------------------------------------
