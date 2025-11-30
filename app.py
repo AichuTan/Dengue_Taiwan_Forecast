@@ -9,21 +9,25 @@ import io
 from supabase import create_client, Client
 
 
+import os
+
+
+SUPABASE_URL = os.getenv("SUPABASE_URL", st.secrets.get("SUPABASE_URL", ""))
+SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY", st.secrets.get("SUPABASE_ANON_KEY", ""))
+SUPABASE_BUCKET_ARTIFACTS = os.getenv("SUPABASE_BUCKET_ARTIFACTS", st.secrets.get("SUPABASE_BUCKET_ARTIFACTS", "artifacts"))
+
 
 # ------------------------------------------------------------------
 # Supabase setup
 # ------------------------------------------------------------------
 @st.cache_resource
-def get_supabase_client() -> Client:
-    """
-    Create a single Supabase client (cached across reruns).
-    """
-    url = st.secrets["SUPABASE_URL"]
-    key = st.secrets["SUPABASE_ANON_KEY"]
-    return create_client(url, key)
+def get_supabase_client():
+    return create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+ARTIFACTS_BUCKET = SUPABASE_BUCKET_ARTIFACTS
 
 
-ARTIFACTS_BUCKET = st.secrets.get("SUPABASE_BUCKET_ARTIFACTS", "artifacts")
+# ARTIFACTS_BUCKET = st.secrets.get("SUPABASE_BUCKET_ARTIFACTS", "artifacts")
 
 
 def read_csv_from_supabase(path: str, parse_dates=None) -> pd.DataFrame:
