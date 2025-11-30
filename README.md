@@ -17,6 +17,7 @@ Machine Learning · Deep Learning · Cloud Pipeline · Streamlit Web App
 - Dengue surveillance (Taiwan CDC)
 - Climate and rainfall (NCHC)
 - Mosquito vector indices: BI, HI, CI
+- Taiwan Population Data - ArCGIS enriched data 2024
 
 ### Goal
 Develop an early-warning forecasting system to support public health action, outbreak preparedness, and vector control operations.
