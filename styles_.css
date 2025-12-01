@@ -312,6 +312,41 @@ body {
   color: #065f46;
 }
 
+/* ====== RESULTS VISUALS (CHARTS) ====== */
+.results-visuals {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 0.9rem;
+  padding: 1.25rem 1.3rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+.chart-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  color: #0f172a;
+}
+
+.chart-card img {
+  width: 100%;
+  display: block;
+  border-radius: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.chart-caption {
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
 /* ===================== EMBEDS (ArcGIS, Streamlit) ===================== */
 .embed-card {
   background: #ffffff;

@@ -327,8 +327,60 @@
             </ul>
           </div>
         </div>
+              <!-- ===== Key Visuals (Charts) ===== -->
+      <div class="results-visuals">
+        <!-- Chart 1: Outbreak pattern -->
+        <article class="chart-card">
+          <h3>Outbreak Pattern – Kaohsiung (2010–2024)</h3>
+          <img
+            src="assets/kaohsiung_timeseries.png"
+            alt="Line chart of weekly dengue cases in Kaohsiung from 2010 to 2024 showing large outbreaks in 2015 and 2023–2024."
+          />
+          <p class="chart-caption">
+            Weekly dengue cases in Kaohsiung show long periods of low
+            transmission punctuated by large outbreaks, with major peaks in
+            2015 and 2023–2024. This motivates the need for early-warning
+            models that can anticipate sudden surges.
+          </p>
+        </article>
+
+        <!-- Chart 2: Forecast vs actual -->
+        <article class="chart-card">
+          <h3>Forecast vs Actual – Kaohsiung (XGBoost)</h3>
+          <img
+            src="assets/kaohsiung_xgboost_forecast.png"
+            alt="Line chart comparing XGBoost predictions to actual weekly dengue cases in Kaohsiung during 2022–2024."
+          />
+          <p class="chart-caption">
+            XGBoost closely tracks both the rise and decline of the 2023–2024
+            outbreak, capturing peak timing and magnitude more accurately than
+            deep-learning models. This supports its selection as the primary
+            operational model.
+          </p>
+        </article>
+
+        <!-- Chart 3: Model comparison (optional) -->
+        <article class="chart-card">
+          <h3>Model RMSE Comparison – Test Set</h3>
+          <img
+            src="assets/model_rmse_comparison.png"
+            alt="Bar chart comparing RMSE across Random Forest, XGBoost, LSTM, and LSTM–Transformer for all three cities."
+          />
+          <p class="chart-caption">
+            Across Kaohsiung, Tainan, and Pingtung, tree-based models
+            (Random Forest and XGBoost) consistently achieve lower RMSE than
+            LSTM-based architectures, especially in cities with large, abrupt
+            outbreaks.
+          </p>
+        </article>
       </div>
+      </div>
+
+
+
     </section>
+
+
 
     <!-- ===================== TOOLS: ARC GIS + STREAMLIT ===================== -->
     <section id="tools" class="tools-section">
