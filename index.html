@@ -61,30 +61,19 @@
     </div>
 
     <!-- Right side: snapshot card -->
-    <div class="hero-card snapshot-card">
-      <h2>Project Snapshot</h2>
-      <ul>
-        <li>
-          <strong>Region:</strong> Southern Taiwan (Kaohsiung, Tainan, Pingtung)
-        </li>
-        <li><strong>Target:</strong> Weekly dengue forecasts</li>
-        <li>
-          <strong>Data:</strong> 2010–2024 dengue cases, climate &amp; rainfall,
-          mosquito indices (BI/HI/CI), population density
-        </li>
-        <li>
-          <strong>Models:</strong> Random Forest, XGBoost, LSTM, LSTM–Transformer
-        </li>
-        <li>
-          <strong>Pipeline:</strong> ETL → lag feature engineering → temporal
-          validation → cloud deployment (Streamlit + Supabase + Render)
-        </li>
-        <li>
-          <strong>Goal:</strong> Early-warning support for public health planning
-          and vector-control operations
-        </li>
-      </ul>
-    </div>
+ <div class="hero-card snapshot-card">
+  <h2>Project Snapshot</h2>
+  <ul>
+    <li><strong>Region:</strong> Southern Taiwan</li>
+    <li><strong>Focus:</strong> Weekly dengue forecasting</li>
+    <li><strong>Data:</strong> 2010–2024 dengue, climate, rainfall, BI/HI/CI</li>
+    <li><strong>Models:</strong> RF, XGBoost, LSTM, LSTM–Transformer</li>
+    <li><strong>Pipeline:</strong> ETL → lag features → validation → cloud app</li>
+    <li><strong>Goal:</strong> Early-warning for public health & vector control</li>
+  </ul>
+</div>
+
+
   </div>
 </section>
 
@@ -171,27 +160,27 @@
           <h3>2.1 Data Pipeline</h3>
           <ul class="nice-list methods-list">
             <li>
-              <span class="label-pill">Sources</span>
+             <strong>Sources:</strong>
               Taiwan CDC (dengue &amp; BI/HI/CI), NCHC weather &amp; rainfall,
               and population density (ArcGIS Enriched 2024).
             </li>
             <li>
-              <span class="label-pill">Integration</span>
+              <strong>Integration :</strong>
               Weekly city-level time series from 2010–2024 for Kaohsiung,
               Tainan, and Pingtung.
             </li>
             <li>
-              <span class="label-pill">Preprocessing</span>
+              <strong>Processing :</strong>
               Outlier and sensor-error filtering, interpolation of climate
               gaps, and forward/backward fill for mosquito indices.
             </li>
             <li>
-              <span class="label-pill">Features</span>
+              <strong>Features :</strong>
               1–15 week lags for dengue, temperature, rainfall, and vector
               indices; rolling means and week-of-year indicators.
             </li>
             <li>
-              <span class="label-pill">Scaling</span>
+             <strong>Scaling : </strong>
               Min–Max for deep-learning models; z-score normalization for
               tree-based models.
             </li>
@@ -202,22 +191,22 @@
           <h3>2.2 Forecasting Setup</h3>
           <ul class="nice-list methods-list">
             <li>
-              <span class="label-pill">Task</span>
+              <strong>Task :</strong>
               One-week-ahead prediction of weekly dengue cases, with a
               separate model per city.
             </li>
             <li>
-              <span class="label-pill">Splits</span>
+             <strong>Splits :</strong>
               Train 2010–2017, validation 2018–2021, test 2022–2024
               (chronological, no shuffling).
             </li>
             <li>
-              <span class="label-pill">Validation</span>
+              <strong>Validation :</strong> 
               Time-series cross-validation for tree models; fixed validation
               window and early stopping for LSTM-based models.
             </li>
             <li>
-              <span class="label-pill">Metrics</span>
+             <strong>Metrics :</strong> 
               RMSE, MAE, MSE, and R² on held-out weekly test data.
             </li>
           </ul>
@@ -324,10 +313,10 @@
       <!-- Step 4 -->
       <div class="pipeline-step">
         <div class="pipeline-badge">4</div>
-        <h4>Artifact Storage (Supabase)</h4>
+        <h4>Artifact Storage (cloud)</h4>
         <ul>
-          <li><code>predictions.csv</code>, <code>metrics.json</code>, <code>residuals.csv</code></li>
-          <li><code>history.csv</code>, <code>feature_importance.csv</code>, <code>model_metadata.json</code></li>
+          <li>predictions.csv, metrics.json, residuals.csv</li>
+          <li>history.csv, feature_importance.csv, model_metadata.json</li>
           <li>Versioned per city, model, and run timestamp</li>
         </ul>
       </div>
@@ -335,7 +324,7 @@
       <!-- Step 5 -->
       <div class="pipeline-step">
         <div class="pipeline-badge">5</div>
-        <h4>Streamlit Web App</h4>
+        <h4>Streamlit Web App (cloud)</h4>
         <ul>
           <li>Loads artifacts from Supabase</li>
           <li>Forecast visualization &amp; diagnostics (EDA, ACF/PACF, residuals)</li>
