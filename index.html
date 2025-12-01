@@ -119,9 +119,12 @@
         <h3>Motivation</h3>
         <p>
           Dengue outbreaks in southern Taiwan are driven by climate and mosquito
-          dynamics, but early-warning tools are limited. This project builds a
-          forecasting system for Kaohsiung, Tainan, and Pingtung using
-          multi-source data to support timely public health action.
+          dynamics, but early-warning tools remain limited. This project builds a
+          forecasting system for Kaohsiung, Tainan, and Pingtung using multi-source
+          data to support timely public health action. By integrating climate,
+          rainfall, and mosquito indicators, the system provides early signals of
+          rising dengue risk, enabling faster response and improved resource
+          planning.
         </p>
       </div>
 
@@ -151,78 +154,92 @@
 </section>
 
 
-    <!-- ===================== METHODS & MODELS ===================== -->
-    <section id="methods" class="section section-alt">
-      <div class="container">
-        <h2>2. Methodology & Models</h2>
-        <div class="two-column">
-          <div>
-            <h3>Data Pipeline</h3>
-            <ul class="nice-list">
-              <li>
-                <strong>Sources:</strong> Taiwan CDC (dengue & BI/HI/CI), NCHC
-                weather & rainfall.
-              </li>
-              <li>
-                <strong>Temporal Scale:</strong> Aggregated to weekly city-level
-                time series.
-              </li>
-              <li>
-                <strong>Preprocessing:</strong> Outlier filtering,
-                interpolation, forward/backward fill, lag feature engineering.
-              </li>
-              <li>
-                <strong>Scaling:</strong> Min–Max (deep learning), z-score (tree
-                models).
-              </li>
-            </ul>
-            <h3>Evaluation Setup</h3>
-            <ul class="nice-list">
-              <li>
-                Time-based train/validation/test split (train up to 2017,
-                validation 2018–2021, test 2022–2024).
-              </li>
-              <li>
-                Metrics: RMSE, MAE, MSE, and R² on held-out weekly test data.
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3>Models Compared</h3>
-            <div class="card-grid">
-              <div class="model-card">
-                <h4>Random Forest</h4>
-                <p>
-                  Ensemble of decision trees with time-based cross-validation
-                  and hyperparameter tuning.
-                </p>
-              </div>
-              <div class="model-card">
-                <h4>XGBoost</h4>
-                <p>
-                  Gradient-boosted trees with grid search over depth, learning
-                  rate, and tree count.
-                </p>
-              </div>
-              <div class="model-card">
-                <h4>LSTM (Lag Features)</h4>
-                <p>
-                  Sequence model on standardized lagged features with sample
-                  weighting during outbreaks.
-                </p>
-              </div>
-              <div class="model-card">
-                <h4>LSTM–Transformer</h4>
-                <p>
-                  LSTM encoder + multi-head self-attention and cyclic calendar
-                  features for seasonality.
-                </p>
-              </div>
-            </div>
-          </div>
+ <!-- ===================== METHODS & MODELS ===================== -->
+<section id="methods" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">2. Methodology &amp; Models</h2>
+
+    <div class="two-column methods-grid">
+      <!-- LEFT: Data pipeline + problem setup -->
+      <div class="methods-left">
+        <h3>Data Pipeline</h3>
+        <ul class="nice-list">
+          <li><strong>Sources:</strong> Taiwan CDC (dengue &amp; BI/HI/CI),
+            NCHC weather &amp; rainfall, population density.</li>
+          <li><strong>Integration:</strong> Merged by city and week to build
+            2010–2024 multi-source time series for Kaohsiung, Tainan, and
+            Pingtung.</li>
+          <li><strong>Preprocessing:</strong> Outlier filtering, sensor-error
+            removal, interpolation for weather, forward/backward fill for
+            mosquito indices.</li>
+          <li><strong>Feature Engineering:</strong> 1–15 week lags for dengue,
+            temperature, rainfall, and mosquito indices; optional rolling
+            means and seasonal (week-of-year) indicators.</li>
+          <li><strong>Scaling:</strong> Min–Max for deep-learning models,
+            z-score normalization for tree-based models.</li>
+        </ul>
+
+        <h3>Forecasting Setup</h3>
+        <ul class="nice-list">
+          <li><strong>Task:</strong> 1-week-ahead prediction of weekly dengue
+            cases, trained separately for each city.</li>
+          <li><strong>Splits:</strong> Train 2010–2017, validation
+            2018–2021, test 2022–2024 (chronological, no shuffling).</li>
+          <li><strong>Validation:</strong> Time-series–aware cross-validation
+            for tree models; fixed validation window and early stopping for
+            LSTM-based models.</li>
+          <li><strong>Metrics:</strong> RMSE, MAE, MSE, and R² on held-out
+            weekly test data.</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: Model cards -->
+      <div class="methods-right">
+        <h3>Models Compared</h3>
+        <div class="card-grid model-grid">
+          <article class="model-card">
+            <h4>Random Forest</h4>
+            <p>
+              Ensemble of decision trees that captures nonlinear relations
+              between lagged climate, mosquito indices, and dengue. Tuned over
+              tree depth, number of estimators, and feature subsampling using
+              time-based CV.
+            </p>
+          </article>
+
+          <article class="model-card">
+            <h4>XGBoost</h4>
+            <p>
+              Gradient-boosted trees optimized for tabular time-series data.
+              Grid search over learning rate, max depth, and number of boosting
+              rounds. Typically delivered the lowest RMSE and highest R².
+            </p>
+          </article>
+
+          <article class="model-card">
+            <h4>LSTM (Lag Features)</h4>
+            <p>
+              Sequence model trained on 24-week input windows of standardized
+              lagged features. Uses Adam optimization and sample weighting to
+              emphasize outbreak weeks, but tends to smooth sharp peaks.
+            </p>
+          </article>
+
+          <article class="model-card">
+            <h4>LSTM–Transformer</h4>
+            <p>
+              Hybrid architecture with an LSTM encoder and multi-head
+              self-attention plus cyclic calendar features to capture both
+              short- and long-range seasonality. Performance limited by sparse
+              outbreak history.
+            </p>
+          </article>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <!-- ===================== RESULTS / COMPARISON ===================== -->
     <section id="results" class="section">
