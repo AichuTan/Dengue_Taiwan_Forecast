@@ -162,7 +162,7 @@
     <div class="two-column methods-grid">
       <!-- LEFT: Data pipeline + problem setup -->
       <div class="methods-left">
-        <h3>Data Pipeline</h3>
+        <h3>2.1 Data Pipeline</h3>
         <ul class="nice-list">
           <li><strong>Sources:</strong> Taiwan CDC (dengue &amp; BI/HI/CI),
             NCHC weather &amp; rainfall, population density.</li>
@@ -179,7 +179,7 @@
             z-score normalization for tree-based models.</li>
         </ul>
 
-        <h3>Forecasting Setup</h3>
+        <h3>2.2 Forecasting Setup</h3>
         <ul class="nice-list">
           <li><strong>Task:</strong> 1-week-ahead prediction of weekly dengue
             cases, trained separately for each city.</li>
@@ -195,7 +195,7 @@
 
       <!-- RIGHT: Model cards -->
       <div class="methods-right">
-        <h3>Models Compared</h3>
+        <h3>2.3 Models Compared</h3>
         <div class="card-grid model-grid">
           <article class="model-card">
             <h4>Random Forest</h4>
@@ -235,6 +235,89 @@
             </p>
           </article>
         </div>
+      </div>
+                          <!-- ===================== PIPELINE ===================== -->
+<section id="pipeline" class="section section-alt">
+
+    <h3 class="results-subtitle">2.4 End-to-End Forecasting Pipeline</h3>
+  </div>
+
+<p>
+  The forecasting system follows a fully reproducible end-to-end pipeline that connects 
+  raw dengue, climate, and mosquito surveillance data to trained machine-learning models 
+  and an interactive Streamlit dashboard. Each stage—from ETL to model training to cloud 
+  artifact storage—ensures data consistency, version control, and operational readiness 
+  for weekly dengue forecasting across Kaohsiung, Tainan, and Pingtung.
+</p>
+
+<div class="pipeline"></div>
+      <!-- Step 1 -->
+      <div class="pipeline-step">
+        <div class="pipeline-badge">1</div>
+        <h3>Raw Data Sources</h3>
+        <ul>
+          <li>Taiwan CDC dengue surveillance</li>
+          <li>CDC mosquito indices (BI, HI, CI)</li>
+          <li>NCHC climate &amp; rainfall</li>
+          <li>Taiwan population data (ArcGIS Enriched 2024)</li>
+        </ul>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="pipeline-step">
+        <div class="pipeline-badge">2</div>
+        <h3>ETL and Data Preprocessing (Local)</h3>
+        <ul>
+          <li>Weekly aggregation to city-level time series</li>
+          <li>Missing value handling &amp; sensor-error filtering</li>
+          <li>Lag feature engineering (cases, climate, mosquito indices)</li>
+          <li>Scaling (Min–Max / z-score)</li>
+          <li>Quality control (QC) checks</li>
+        </ul>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="pipeline-step">
+        <div class="pipeline-badge">3</div>
+        <h3>Model Training (Local Python)</h3>
+        <ul>
+          <li>Random Forest, XGBoost, LSTM, LSTM–Transformer</li>
+          <li>Hyperparameter tuning &amp; time-series cross-validation</li>
+          <li>Separate models per city (Kaohsiung, Tainan, Pingtung)</li>
+        </ul>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="pipeline-step">
+        <div class="pipeline-badge">4</div>
+        <h3>Artifact Storage on Supabase (Cloud)</h3>
+        <ul>
+          <li><code>predictions.csv</code>, <code>metrics.json</code>, <code>residuals.csv</code></li>
+          <li><code>history.csv</code>, <code>feature_importance.csv</code>, <code>model_metadata.json</code></li>
+          <li>Versioned per city, model, and run timestamp</li>
+        </ul>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="pipeline-step">
+        <div class="pipeline-badge">5</div>
+        <h3>Streamlit Web Application</h3>
+        <ul>
+          <li>Loads artifacts from Supabase</li>
+          <li>Forecast visualization &amp; diagnostics (EDA, ACF/PACF, residuals)</li>
+          <li>Deployed on Render Cloud</li>
+        </ul>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="pipeline-step">
+        <div class="pipeline-badge">6</div>
+        <h3>End User</h3>
+        <ul>
+          <li>City selection &amp; model selection</li>
+          <li>Interactive exploration of predicted vs. actual cases</li>
+          <li>Operational insights for early-warning and planning</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -488,108 +571,97 @@
   <article class="tool-block">
     <h3>4.2 Streamlit Forecasting App</h3>
     <p>
-      A Streamlit web application allows users to explore EDA, ACF/PACF, model performance,
-      and forecast diagnostics for each city. Users can switch between Random Forest, XGBoost,
-      LSTM, and LSTM–Transformer to compare test metrics and view predicted vs. actual time series.
-    </p>
-  <div class="tool-card">
-    <a href="https://dengue-taiwan-forecast.onrender.com/" target="_blank">
-      <img src="streamlit-app.png" alt="Live Streamlit dengue dashboard" style="border-radius: 8px;">
+  A Streamlit web application lets users explore EDA, ACF/PACF, model
+  performance, and forecast diagnostics for each city. Users can switch
+  between Random Forest, XGBoost, LSTM, and LSTM–Transformer to compare
+  test metrics and inspect predicted vs. actual time series.
+</p>
+ <div class="tool-card">
+  <a href="https://dengue-taiwan-forecast.onrender.com/" target="_blank">
+    <img
+      src="assets/streamlit-app.png"
+      alt="Live Streamlit dengue forecasting dashboard"
+    />
+  </a>
+  <p class="tool-caption">
+    <strong>Dengue Forecasting Dashboard</strong><br />
+    Interactive Streamlit app to explore city-level dengue forecasts, model
+    comparisons, and outbreak diagnostics.<br />
+    <a
+      href="https://dengue-taiwan-forecast.onrender.com/"
+      target="_blank"
+      class="launch-btn"
+    >
+      Launch Live App →
     </a>
-    <p class="tool-caption">
-      <strong>Dengue Forecasting Dashboard</strong><br>
-      A Streamlit-based interactive visualization using machine learning models.<br>
-      <a href="https://dengue-taiwan-forecast.onrender.com/" target="_blank" class="launch-btn">
-        Launch Live App →
-      </a>
-    </p>
-  </div>
+  </p>
+      <p>
+Four-panel summary of the Streamlit dengue forecasting dashboard. 
+(1) Exploratory Data Analysis (EDA) visualizes long-term dengue case trends and climate patterns for each city. 
+(2) Autocorrelation and partial autocorrelation functions reveal temporal dependencies essential for model training. 
+(3) The single-model forecast view displays predicted vs. actual dengue case trajectories using models such as Random Forest, XGBoost, LSTM, or LSTM–Transformer. 
+(4) The model comparison module summarizes performance metrics (e.g., RMSE, MAE, MAPE) across all models to identify the best-performing approach.
+</p>
+</div>
 
   </article>
 </section>
 
-    <!-- ===================== SWOT ===================== -->
-    <section id="swot" class="section">
-      <div class="container">
-<h2 class="section-title">5. SWOT Analysis</h2>
-        <p >
-          The table below summarizes the strengths, weaknesses, opportunities,
-          and threats of the proposed dengue forecasting framework and its
-          implementation in Southern Taiwan.
-        </p>
+<!-- ===================== SWOT ===================== -->
+<section id="swot" class="section">
+  <div class="container">
+    <h2 class="section-title">5. SWOT Analysis</h2>
+    <p>
+      The table below summarizes the strengths, weaknesses, opportunities,
+      and threats of the proposed dengue forecasting framework and its
+      implementation in Southern Taiwan.
+    </p>
 
-        <div class="swot-grid">
-          <div class="swot-box swot-strengths">
-            <h3>Strengths</h3>
-            <ul>
-              <li>
-                High predictive accuracy of Random Forest and XGBoost across
-                cities.
-              </li>
-              <li>
-                15-year multi-source dataset integrating dengue, climate, and
-                mosquito indices.
-              </li>
-              <li>
-                Interpretable feature importance supports public health
-                decision-making.
-              </li>
-              <li>
-                Interactive dashboards (ArcGIS + Streamlit) for real-time
-                exploration.
-              </li>
-            </ul>
-          </div>
-          <div class="swot-box swot-weaknesses">
-            <h3>Weaknesses</h3>
-            <ul>
-              <li>
-                Weekly temporal resolution limits deep learning performance.
-              </li>
-              <li>LSTM-based models underpredict large outbreak peaks.</li>
-              <li>Irregular mosquito index data require imputation.</li>
-              <li>
-                City-level granularity; lacks neighborhood-level spatial
-                precision.
-              </li>
-            </ul>
-          </div>
-          <div class="swot-box swot-opportunities">
-            <h3>Opportunities</h3>
-            <ul>
-              <li>
-                Incorporate mobility, search trends, and satellite imagery.
-              </li>
-              <li>
-                Extend to advanced spatiotemporal models (TFT, GNN, Seq2Seq).
-              </li>
-              <li>
-                Build automated early-warning pipelines for health authorities.
-              </li>
-              <li>
-                Scale to district or village-level risk maps for targeted
-                control.
-              </li>
-            </ul>
-          </div>
-          <div class="swot-box swot-threats">
-            <h3>Threats</h3>
-            <ul>
-              <li>
-                Climate change may alter dengue seasonality and intensity.
-              </li>
-              <li>
-                Surveillance changes, reporting delays, or inconsistent data.
-              </li>
-              <li>Emerging serotypes or vectors may reduce model stability.</li>
-              <li>
-                Rapid human mobility can trigger unexpected outbreak clusters.
-              </li>
-            </ul>
-          </div>
-        </div>
+    <div class="swot-grid">
+      <div class="swot-box swot-strengths">
+        <h3>Strengths</h3>
+        <ul>
+          <li>Strong predictive performance from tree-based models.</li>
+          <li>Comprehensive 15-year dataset integrating dengue, climate, and vector indices.</li>
+          <li>Interpretable feature importance and diagnostic tools.</li>
+          <li>Interactive dashboards enabling exploratory analysis and model comparison.</li>
+        </ul>
       </div>
-    </section>
+
+      <div class="swot-box swot-weaknesses">
+        <h3>Weaknesses</h3>
+        <ul>
+          <li>Missing and noisy mosquito and climate data requiring imputation.</li>
+          <li>Weekly resolution limits detection of rapid environmental changes.</li>
+          <li>City-level scale lacks finer neighborhood-level insights.</li>
+          <li>Few large historical outbreaks reduce model generalizability.</li>
+          <li>Short development timeline and free-tier cloud hosting restrict optimization and performance.</li>
+        </ul>
+      </div>
+
+      <div class="swot-box swot-opportunities">
+        <h3>Opportunities</h3>
+        <ul>
+          <li>Integrate mobility, satellite, and land-use data for improved early warnings.</li>
+          <li>Adopt advanced spatiotemporal models (TFT, GNN, hybrid deep learning).</li>
+          <li>Increase spatial resolution for district- or village-level risk mapping.</li>
+          <li>Build automated pipelines and migrate to more scalable cloud infrastructure.</li>
+        </ul>
+      </div>
+
+      <div class="swot-box swot-threats">
+        <h3>Threats</h3>
+        <ul>
+          <li>Climate change may alter outbreak patterns and reduce model stability.</li>
+          <li>Surveillance inconsistencies and reporting delays can degrade forecast accuracy.</li>
+          <li>Emerging serotypes or vector shifts may weaken model assumptions.</li>
+          <li>Human mobility can trigger unpredictable outbreak clusters.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- ===================== ABOUT / BDA PROGRAM REFLECTION ===================== -->
     <section id="about" class="section section-alt">
@@ -621,22 +693,21 @@
                 <a href="report.pdf" target="_blank"
                   >Full Capstone Report (PDF)</a
                 >
-                (replace with your file)
               </li>
               <li>
-                <a href="cv.pdf" target="_blank">Professional Resume / CV</a>
-                (optional link)
+                <a href="https://www.linkedin.com/in/aichutan/" target="_blank">My Linkedin</a>
               </li>
               <li>
-                <a href="https://github.com/your-repo" target="_blank"
+                <a href="https://github.com/AichuTan/Dengue_Taiwan_Forecast" target="_blank"
                   >GitHub Repository (Code & Notebooks)</a
                 >
               </li>
+              <li>
+                <a href="https://aichutan.github.io/" target="_blank"
+                  >My Full Portfolio</a
+                >
+              </li>
             </ul>
-            <p class="small-note">
-              *Update the links above with your actual report, resume, and
-              GitHub URL to make this section fully functional.*
-            </p>
           </div>
         </div>
       </div>
