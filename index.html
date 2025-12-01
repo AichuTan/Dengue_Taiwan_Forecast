@@ -241,94 +241,172 @@
 </section>
 
 
-    <!-- ===================== RESULTS / COMPARISON ===================== -->
-    <section id="results" class="section">
-      <div class="container">
-        <h2>3. Key Results – Model Comparison</h2>
-        <p class="section-intro">
-          Across all three cities, tree-based models (Random Forest and XGBoost)
-          consistently outperformed LSTM-based models in predicting weekly
-          dengue cases, especially during large outbreaks.
+<!-- ===================== RESULTS / COMPARISON ===================== -->
+<section id="results" class="section">
+  <div class="container">
+    <h2 class="section-title">3. Key Results – Model Comparison</h2>
+    <p >
+      Across all three regions, tree-based models (Random Forest and XGBoost)
+      consistently outperformed LSTM-based models in predicting weekly dengue
+      cases, especially during large outbreaks. Below is a compact summary of
+      how each model behaved by city and a cross-city performance table.
+    </p>
+
+    <!-- 3.1 City-level summaries -->
+    <h3 class="results-subtitle">3.1 City-Level Performance</h3>
+    <div class="results-grid results-city-grid">
+      <!-- Kaohsiung -->
+      <article class="results-card">
+        <h3>Kaohsiung City</h3>
+        <p class="results-meta">
+          <span class="pill-best">Best: Random Forest</span>
+          <span class="pill-metric">RMSE 19.28 · R² 0.899</span>
         </p>
+        <ul class="nice-list">
+          <li>
+            Random Forest captured the shape and magnitude of the 2023–2024
+            outbreak with the lowest overall error.
+          </li>
+          <li>
+            XGBoost performed well (RMSE 25.53, R² 0.822) but slightly
+            underpredicted peak weeks.
+          </li>
+          <li>
+            LSTM and LSTM–Transformer produced overly smooth curves and
+            underestimated the outbreak peak (RMSE &gt; 47).
+          </li>
+        </ul>
+      </article>
 
-        <div class="results-grid">
-          <div class="results-card">
-            <h3>Kaohsiung City</h3>
-            <table class="results-table">
-              <thead>
-                <tr>
-                  <th>Model</th>
-                  <th>RMSE</th>
-                  <th>MAE</th>
-                  <th>R²</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Random Forest</td>
-                  <td>19.28</td>
-                  <td>6.90</td>
-                  <td>0.90</td>
-                </tr>
-                <tr class="highlight-row">
-                  <td>XGBoost</td>
-                  <td>14.92</td>
-                  <td>5.24</td>
-                  <td>0.95</td>
-                </tr>
-                <tr>
-                  <td>LSTM (Lag)</td>
-                  <td>≈19–22</td>
-                  <td>≈7–9</td>
-                  <td>0.80–0.88</td>
-                </tr>
-                <tr>
-                  <td>LSTM–Transformer</td>
-                  <td>≈18–21</td>
-                  <td>≈7–8</td>
-                  <td>0.82–0.89</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="results-note">
-              <strong>Best model:</strong> XGBoost (lowest RMSE, highest R²).
-            </p>
-          </div>
+      <!-- Tainan -->
+      <article class="results-card">
+        <h3>Tainan City</h3>
+        <p class="results-meta">
+          <span class="pill-best">Best: XGBoost</span>
+          <span class="pill-metric">RMSE 113.88 · R² 0.928</span>
+        </p>
+        <ul class="nice-list">
+          <li>
+            Extreme 2015 and 2023–2024 outbreaks made performance differences
+            most visible in Tainan.
+          </li>
+          <li>
+            XGBoost slightly outperformed Random Forest (RMSE 121.21, R² 0.918),
+            closely tracking the steep epidemic curves.
+          </li>
+          <li>
+            LSTM and LSTM–Transformer failed to model the sharp peaks, with very
+            large errors and negative R² values.
+          </li>
+        </ul>
+      </article>
 
-          <div class="results-card">
-            <h3>Tainan City</h3>
-            <p>
-              Models trained independently with similar feature sets and
-              evaluation design.
-            </p>
-            <ul class="nice-list">
-              <li>XGBoost and Random Forest again outperformed LSTM models.</li>
-              <li>
-                LSTM variants captured general seasonal trends but
-                underpredicted peak outbreaks.
-              </li>
-            </ul>
-          </div>
+      <!-- Pingtung -->
+      <article class="results-card">
+        <h3>Pingtung County</h3>
+        <p class="results-meta">
+          <span class="pill-best">Best: RF ≈ XGBoost</span>
+          <span class="pill-metric">RMSE ≈ 3.0 · R² ≈ 0.85</span>
+        </p>
+        <ul class="nice-list">
+          <li>
+            Lower, more irregular outbreaks still produced accurate forecasts
+            from Random Forest (RMSE 2.95, R² 0.856) and XGBoost
+            (RMSE 2.99, R² 0.851).
+          </li>
+          <li>
+            Tree-based models remained robust under low-count, noisy conditions.
+          </li>
+          <li>
+            LSTM and LSTM–Transformer underpredicted outbreak magnitude and
+            showed unstable validation behavior.
+          </li>
+        </ul>
+      </article>
+    </div>
 
-          <div class="results-card">
-            <h3>Pingtung County</h3>
-            <p>
-              Smaller case counts and fewer large outbreaks produced slightly
-              noisier signals.
-            </p>
-            <ul class="nice-list">
-              <li>
-                Tree-based models remained more robust to sparse and irregular
-                peaks.
-              </li>
-              <li>
-                LSTM models occasionally smoothed away short, sharp outbreaks.
-              </li>
-            </ul>
-          </div>
-        </div>
-              <!-- ===== Key Visuals (Charts) ===== -->
+    <!-- 3.2 Cross-city performance table -->
+    <article class="results-card results-table-card">
+      <h3>3.2 Cross-City Performance Summary</h3>
+      <p class="results-note">
+        Cells show <strong>RMSE / R²</strong> on the test set (2022–2024). Best
+        models per city are highlighted.
+      </p>
+      <div class="results-table-wrapper">
+        <table class="results-table wide-table">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Random Forest</th>
+              <th>XGBoost</th>
+              <th>LSTM</th>
+              <th>LSTM–Transformer</th>
+              <th>Best Model</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td>Kaohsiung</td>
+              <td>19.28 / 0.899</td>
+              <td>25.53 / 0.822</td>
+              <td>54.83 / 0.288</td>
+              <td>47.17 / 0.406</td>
+              <td>Random Forest</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Tainan</td>
+              <td>121.21 / 0.918</td>
+              <td>113.88 / 0.928</td>
+              <td>483.51 / –0.122</td>
+              <td>469.91 / –0.115</td>
+              <td>XGBoost</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Pingtung</td>
+              <td>2.95 / 0.856</td>
+              <td>2.99 / 0.851</td>
+              <td>7.97 / 0.085</td>
+              <td>4.30 / 0.700</td>
+              <td>Random Forest / XGBoost</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- 3.3 Cross-city insights -->
+    <article class="results-card results-insights">
+      <h3>3.3 Cross-City Insights</h3>
+      <ul class="nice-list">
+        <li>
+          <strong>Tree-based models dominate:</strong> Random Forest and
+          XGBoost achieved the best performance in every city, providing stable
+          forecasts even with limited outbreak history.
+        </li>
+        <li>
+          <strong>Deep learning struggles with spikes:</strong> LSTM-based
+          models systematically underpredicted sharp epidemic peaks, especially
+          in Tainan, and often produced negative R² values.
+        </li>
+        <li>
+          <strong>Recent case lags drive predictions:</strong>
+          <code>cases_lag1</code> and nearby lags were consistently the most
+          important features, with climatic and mosquito indices contributing
+          more variably by region.
+        </li>
+        <li>
+          <strong>Operational takeaway:</strong> For southern Taiwan’s
+          episodic, highly skewed dengue dynamics, tree-based ML models are
+          currently more reliable than LSTM architectures for early-warning
+          forecasts.
+        </li>
+      </ul>
+    </article>
+
+    <!-- 3.4 Key visuals -->
+    <h3 class="results-subtitle">3.4 Key Visuals</h3>
       <div class="results-visuals">
+
         <!-- Chart 1: Outbreak pattern -->
         <article class="chart-card">
           <h3>Outbreak Pattern – Kaohsiung (2010–2024)</h3>
@@ -385,7 +463,7 @@
     <!-- ===================== TOOLS: ARC GIS + STREAMLIT ===================== -->
     <section id="tools" class="tools-section">
       <div class="container">
-  <h2>4. Interactive Tools</h2>
+ <h2 class="section-title">4. Interactive Tools</h2>
 
   <article class="tool-block">
     <h3>4.1 ArcGIS Online Dashboard</h3>
@@ -433,8 +511,8 @@
     <!-- ===================== SWOT ===================== -->
     <section id="swot" class="section">
       <div class="container">
-        <h2>5. SWOT Analysis</h2>
-        <p class="section-intro">
+<h2 class="section-title">5. SWOT Analysis</h2>
+        <p >
           The table below summarizes the strengths, weaknesses, opportunities,
           and threats of the proposed dengue forecasting framework and its
           implementation in Southern Taiwan.
@@ -516,7 +594,7 @@
     <!-- ===================== ABOUT / BDA PROGRAM REFLECTION ===================== -->
     <section id="about" class="section section-alt">
       <div class="container">
-        <h2>6. About the Author</h2>
+<h2 class="section-title">6. About the Author</h2>
         <div class="two-column">
           <div>
             <h3>BDA Program Learning Outcomes</h3>

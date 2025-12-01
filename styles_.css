@@ -44,7 +44,9 @@ body {
 
 .section-intro {
   max-width: 720px;
-  margin-bottom: 2rem;
+  margin: 0.75rem 0 2rem;
+  font-size: 0.95rem;
+  color: #4b5563;
 }
 
 .two-column {
@@ -347,6 +349,67 @@ body {
   line-height: 1.6;
 }
 
+/* --- Key Results refinement --- */
+
+.results-city-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.results-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.35rem 0 0.6rem;
+  font-size: 0.83rem;
+}
+
+.pill-best,
+.pill-metric {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.pill-best {
+  font-weight: 600;
+  background: #ecfdf5;
+  border-color: #bbf7d0;
+}
+
+/* Cross-city table & wrapper */
+.results-table-card {
+  margin-top: 2rem;
+}
+
+.results-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.results-table.wide-table th,
+.results-table.wide-table td {
+  white-space: nowrap;
+  font-size: 0.83rem;
+}
+
+/* Insights card */
+.results-insights {
+  margin-top: 1.75rem;
+}
+.results-insights ul {
+  margin-top: 0.4rem;
+}
+#results .results-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 2rem 0 1rem; /* same top/bottom spacing for all */
+  letter-spacing: 0.01em;
+}
 /* ===================== EMBEDS (ArcGIS, Streamlit) ===================== */
 .embed-card {
   background: #ffffff;
