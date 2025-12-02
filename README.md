@@ -87,7 +87,7 @@ The workflow spans from data engineering (ETL), to model training and evaluation
       │  Model selection | City selection | Interactive analysis   │
       └────────────────────────────────────────────────────────────┘
 
-
+```
 Author
 
 Aichu Tan
@@ -103,7 +103,7 @@ https://experience.arcgis.com/experience/1eebab4280a549d294e274392d64625f
 ### Live Streamlit Forecasting App  
 https://dengue-taiwan-forecast.onrender.com/
 
-### 🎥 Video Presentation  
+### Video Presentation  
 (Insert link once available)
 
 ---
