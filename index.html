@@ -31,136 +31,141 @@
       </div>
     </header>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero">
-  <div class="container hero-inner">
-    <!-- Left side: title + subtitle + tags + button -->
-    <div class="hero-text">
-      <h1>Dengue Forecasting in Southern Taiwan</h1>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <!-- Left side: title + subtitle + tags + button -->
+        <div class="hero-text">
+          <h1>Dengue Forecasting in Southern Taiwan</h1>
 
-      <p class="hero-subtitle">
-        Built a forecasting system for Kaohsiung, Tainan, and Pingtung using
-        Random Forest, XGBoost, LSTM, and a hybrid LSTM–Transformer. Powered by
-        a 15-year dataset (2010–2024) integrating dengue surveillance, climate,
-        rainfall, and mosquito indices, and deployed end-to-end with Streamlit,
-        Supabase, and Render Cloud.
-      </p>
+          <p class="hero-subtitle">
+            Built a forecasting system for Kaohsiung, Tainan, and Pingtung using
+            Random Forest, XGBoost, LSTM, and a hybrid LSTM–Transformer. Powered
+            by a 15-year dataset (2010–2024) integrating dengue surveillance,
+            climate, rainfall, and mosquito indices, and deployed end-to-end
+            with Streamlit, Supabase, and Render Cloud.
+          </p>
 
-      <div class="hero-tags">
-        <span class="tag">Time-series Forecasting</span>
-        <span class="tag">Machine Learning</span>
-        <span class="tag">Deep Learning</span>
-        <span class="tag">MLOps / Cloud Deployment</span>
-        <span class="tag">ArcGIS</span>
-        <span class="tag">Public Health Analytics</span>
+          <div class="hero-tags">
+            <span class="tag">Time-series Forecasting</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">MLOps / Cloud Deployment</span>
+            <span class="tag">ArcGIS</span>
+            <span class="tag">Public Health Analytics</span>
+          </div>
+
+          <div class="hero-buttons">
+            <a
+              href="https://dengue-taiwan-forecast.onrender.com/"
+              class="btn-primary"
+              >Live Forecast Dashboard</a
+            >
+          </div>
+        </div>
+
+        <!-- Right side: snapshot card -->
+        <div class="hero-card snapshot-card">
+          <h2>Project Snapshot</h2>
+          <ul>
+            <li><strong>Region:</strong> Southern Taiwan</li>
+            <li><strong>Focus:</strong> Weekly dengue forecasting</li>
+            <li>
+              <strong>Data:</strong> 2010–2024 dengue, climate, rainfall,
+              BI/HI/CI
+            </li>
+            <li>
+              <strong>Models:</strong> RF, XGBoost, LSTM, LSTM–Transformer
+            </li>
+            <li>
+              <strong>Pipeline:</strong> ETL → lag features → validation → cloud
+              app
+            </li>
+            <li>
+              <strong>Goal:</strong> Early-warning for public health & vector
+              control
+            </li>
+          </ul>
+        </div>
       </div>
+    </section>
 
-      <div class="hero-buttons">
-        <a href="https://dengue-taiwan-forecast.onrender.com/"" class="btn-primary">Live Forecast Dashboard</a>
+    <section id="project-video" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Project Introduction Video</h2>
+
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/yrHJqiaobD0?si=MgXVjECvKmtio7Ev"
+            title="Project Introduction Video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
       </div>
-    </div>
-
-    <!-- Right side: snapshot card -->
- <div class="hero-card snapshot-card">
-  <h2>Project Snapshot</h2>
-  <ul>
-    <li><strong>Region:</strong> Southern Taiwan</li>
-    <li><strong>Focus:</strong> Weekly dengue forecasting</li>
-    <li><strong>Data:</strong> 2010–2024 dengue, climate, rainfall, BI/HI/CI</li>
-    <li><strong>Models:</strong> RF, XGBoost, LSTM, LSTM–Transformer</li>
-    <li><strong>Pipeline:</strong> ETL → lag features → validation → cloud app</li>
-    <li><strong>Goal:</strong> Early-warning for public health & vector control</li>
-  </ul>
-</div>
-
-
-  </div>
-</section>
-
-
-
-
-
-    <section id="project-video" class="section">
-  <div class="container">
-    <h2 class="section-title">Project Introduction Video</h2>
-
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/yrHJqiaobD0?si=MgXVjECvKmtio7Ev"
-        title="Project Introduction Video"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- ===================== OVERVIEW ===================== -->
-<section id="overview" class="section">
-  <div class="container">
-    <h2 class="section-title">1. Project Overview</h2>
+    <section id="overview" class="section">
+      <div class="container">
+        <h2 class="section-title">1. Project Overview</h2>
 
-    <div class="overview-grid">
-      <!-- Motivation card -->
-      <div class="overview-card">
-        <h3>Motivation</h3>
+        <div class="overview-grid">
+          <!-- Motivation card -->
+          <div class="overview-card">
+            <h3>Motivation</h3>
+            <p>
+              Dengue outbreaks in southern Taiwan are driven by climate and
+              mosquito dynamics, but early-warning tools remain limited. This
+              project builds a forecasting system for Kaohsiung, Tainan, and
+              Pingtung using multi-source data to support timely public health
+              action. By integrating climate, rainfall, and mosquito indicators,
+              the system provides early signals of rising dengue risk, enabling
+              faster response and improved resource planning.
+            </p>
+          </div>
+
+          <!-- Objectives card -->
+          <div class="overview-card">
+            <h3>Objectives</h3>
+            <ul class="nice-list">
+              <li>
+                Construct a unified weekly dengue–climate–mosquito dataset for
+                southern Taiwan.
+              </li>
+              <li>
+                Compare four forecasting models: Random Forest, XGBoost, LSTM,
+                LSTM–Transformer.
+              </li>
+              <li>
+                Identify key climatic and entomological drivers of dengue risk.
+              </li>
+              <li>
+                Deploy interactive dashboards using ArcGIS, Streamlit, and
+                Supabase for decision support.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== METHODS & MODELS ===================== -->
+    <section id="methods" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">2. Methodology &amp; Models</h2>
         <p>
-          Dengue outbreaks in southern Taiwan are driven by climate and mosquito
-          dynamics, but early-warning tools remain limited. This project builds a
-          forecasting system for Kaohsiung, Tainan, and Pingtung using multi-source
-          data to support timely public health action. By integrating climate,
-          rainfall, and mosquito indicators, the system provides early signals of
-          rising dengue risk, enabling faster response and improved resource
-          planning.
+          The framework links a multi-source dengue–climate–vector dataset to
+          city-specific forecasting models, evaluated on a held-out 2022–2024
+          test window for Kaohsiung, Tainan, and Pingtung.
         </p>
-      </div>
-
-      <!-- Objectives card -->
-      <div class="overview-card">
-        <h3>Objectives</h3>
-        <ul class="nice-list">
-          <li>
-            Construct a unified weekly dengue–climate–mosquito dataset for
-            southern Taiwan.
-          </li>
-          <li>
-            Compare four forecasting models: Random Forest, XGBoost, LSTM,
-            LSTM–Transformer.
-          </li>
-          <li>
-            Identify key climatic and entomological drivers of dengue risk.
-          </li>
-          <li>
-            Deploy interactive dashboards using ArcGIS, Streamlit, and Supabase
-            for decision support.
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== METHODS & MODELS ===================== -->
-<section id="methods" class="section section-alt">
-  <div class="container">
-    <h2 class="section-title">2. Methodology &amp; Models</h2>
-    <p >
-      The framework links a multi-source dengue–climate–vector dataset to
-      city-specific forecasting models, evaluated on a held-out 2022–2024
-      test window for Kaohsiung, Tainan, and Pingtung.
-    </p>
-
-    <div class="two-column methods-grid">
-      <!-- LEFT: Data pipeline + problem setup -->
-      <div class="methods-left">
-        <div class="methods-card">
-          <h3>2.1 Data Pipeline</h3>
+        <div id="results">
+          <h3 class="results-subtitle">2.1 Data Pipeline</h3>
           <ul class="nice-list methods-list">
             <li>
-             <strong>Sources:</strong>
+              <strong>Sources:</strong>
               Taiwan CDC (dengue &amp; BI/HI/CI), NCHC weather &amp; rainfall,
               and population density (ArcGIS Enriched 2024).
             </li>
@@ -171,8 +176,8 @@
             </li>
             <li>
               <strong>Processing :</strong>
-              Outlier and sensor-error filtering, interpolation of climate
-              gaps, and forward/backward fill for mosquito indices.
+              Outlier and sensor-error filtering, interpolation of climate gaps,
+              and forward/backward fill for mosquito indices.
             </li>
             <li>
               <strong>Features :</strong>
@@ -180,7 +185,7 @@
               indices; rolling means and week-of-year indicators.
             </li>
             <li>
-             <strong>Scaling : </strong>
+              <strong>Scaling : </strong>
               Min–Max for deep-learning models; z-score normalization for
               tree-based models.
             </li>
@@ -188,507 +193,556 @@
 
           <hr class="methods-divider" />
 
-          <h3>2.2 Forecasting Setup</h3>
+          <h3 class="results-subtitle">2.2 Forecasting Setup</h3>
           <ul class="nice-list methods-list">
             <li>
               <strong>Task :</strong>
-              One-week-ahead prediction of weekly dengue cases, with a
-              separate model per city.
+              One-week-ahead prediction of weekly dengue cases, with a separate
+              model per city.
             </li>
             <li>
-             <strong>Splits :</strong>
+              <strong>Splits :</strong>
               Train 2010–2017, validation 2018–2021, test 2022–2024
               (chronological, no shuffling).
             </li>
             <li>
-              <strong>Validation :</strong> 
+              <strong>Validation :</strong>
               Time-series cross-validation for tree models; fixed validation
               window and early stopping for LSTM-based models.
             </li>
             <li>
-             <strong>Metrics :</strong> 
+              <strong>Metrics :</strong>
               RMSE, MAE, MSE, and R² on held-out weekly test data.
             </li>
           </ul>
+
+          <hr class="methods-divider" />
+
+          <h3 class="results-subtitle">2.3 Models Compared</h3>
+          <div class="card-grid model-grid">
+            <article class="model-card">
+              <h4>Random Forest</h4>
+              <p>
+                Ensemble of decision trees capturing nonlinear relations between
+                lagged climate, mosquito indices, and dengue. Tuned over tree
+                depth, number of estimators, and feature subsampling using
+                time-based cross-validation.
+              </p>
+            </article>
+
+            <article class="model-card best-model">
+              <h4>XGBoost</h4>
+              <p>
+                Gradient-boosted trees optimized for tabular time-series data.
+                Grid search over learning rate, max depth, and number of
+                boosting rounds. Typically achieved the lowest RMSE and highest
+                R² across cities.
+              </p>
+            </article>
+
+            <article class="model-card">
+              <h4>LSTM (Lag Features)</h4>
+              <p>
+                Sequence model trained on 24-week input windows of standardized
+                lagged features. Uses Adam optimization and sample weighting to
+                emphasize outbreak weeks but tends to smooth sharp peaks.
+              </p>
+            </article>
+
+            <article class="model-card">
+              <h4>LSTM–Transformer</h4>
+              <p>
+                LSTM encoder with multi-head self-attention and cyclic calendar
+                features to capture short- and long-range seasonality.
+                Performance is constrained by sparse outbreak history in some
+                cities.
+              </p>
+            </article>
+          </div>
+
+          <hr class="methods-divider" />
+
+          <h3 class="results-subtitle">2.4 End-to-End Forecasting Pipeline</h3>
+
+          <p>
+            The forecasting system follows a fully reproducible end-to-end
+            pipeline that connects raw dengue, climate, and mosquito
+            surveillance data to trained machine-learning models and an
+            interactive Streamlit dashboard. Each stage from ETL to model
+            training to cloud artifact storage ensures data consistency, version
+            control, and operational readiness for weekly dengue forecasting
+            across Kaohsiung, Tainan, and Pingtung.
+          </p>
+
+          <div class="pipeline-layout">
+            <!-- Step 1 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">1</div>
+              <h4>Raw Data Sources</h4>
+              <ul>
+                <li>Taiwan CDC dengue surveillance</li>
+                <li>CDC mosquito indices (BI, HI, CI)</li>
+                <li>NCHC climate &amp; rainfall</li>
+                <li>Taiwan population data (ArcGIS Enriched 2024)</li>
+              </ul>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">2</div>
+              <h4>ETL &amp; Preprocessing (Local)</h4>
+              <ul>
+                <li>Weekly aggregation to city-level time series</li>
+                <li>Missing value handling &amp; sensor-error filtering</li>
+                <li>
+                  Lag feature engineering (cases, climate, mosquito indices)
+                </li>
+                <li>Scaling (Min–Max / z-score)</li>
+                <li>Quality control (QC) checks</li>
+              </ul>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">3</div>
+              <h4>Model Training (Python)</h4>
+              <ul>
+                <li>Random Forest, XGBoost, LSTM, LSTM–Transformer</li>
+                <li>
+                  Hyperparameter tuning &amp; time-series cross-validation
+                </li>
+                <li>Separate models per city (Kaohsiung, Tainan, Pingtung)</li>
+              </ul>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">4</div>
+              <h4>Artifact Storage (cloud)</h4>
+              <ul>
+                <li>predictions.csv, metrics.json, residuals.csv</li>
+                <li>
+                  history.csv, feature_importance.csv, model_metadata.json
+                </li>
+                <li>Versioned per city, model, and run timestamp</li>
+              </ul>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">5</div>
+              <h4>Streamlit Web App (cloud)</h4>
+              <ul>
+                <li>Loads artifacts from Supabase</li>
+                <li>
+                  Forecast visualization &amp; diagnostics (EDA, ACF/PACF,
+                  residuals)
+                </li>
+                <li>Deployed on Render Cloud</li>
+              </ul>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">6</div>
+              <h4>End Users</h4>
+              <ul>
+                <li>City and model selection</li>
+                <li>Interactive exploration of predicted vs. actual cases</li>
+                <li>Operational insights for early warning and planning</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- RIGHT: Model cards -->
-      <div class="methods-right">
-        <h3>2.3 Models Compared</h3>
-        <div class="card-grid model-grid">
-          <article class="model-card">
-            <h4>Random Forest</h4>
-            <p>
-              Ensemble of decision trees capturing nonlinear relations between
-              lagged climate, mosquito indices, and dengue. Tuned over tree
-              depth, number of estimators, and feature subsampling using
-              time-based cross-validation.
-            </p>
-          </article>
-
-          <article class="model-card best-model">
-            <h4>XGBoost</h4>
-            <p>
-              Gradient-boosted trees optimized for tabular time-series data.
-              Grid search over learning rate, max depth, and number of
-              boosting rounds. Typically achieved the lowest RMSE and highest
-              R² across cities.
-            </p>
-          </article>
-
-          <article class="model-card">
-            <h4>LSTM (Lag Features)</h4>
-            <p>
-              Sequence model trained on 24-week input windows of standardized
-              lagged features. Uses Adam optimization and sample weighting to
-              emphasize outbreak weeks but tends to smooth sharp peaks.
-            </p>
-          </article>
-
-          <article class="model-card">
-            <h4>LSTM–Transformer</h4>
-            <p>
-              LSTM encoder with multi-head self-attention and cyclic calendar
-              features to capture short- and long-range seasonality. Performance
-              is constrained by sparse outbreak history in some cities.
-            </p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== PIPELINE ===================== -->
-<section id="pipeline" class="section section-alt">
-  <div class="container">
-    <h3 class="results-subtitle">2.4 End-to-End Forecasting Pipeline</h3>
-
-    <p>
-      The forecasting system follows a fully reproducible end-to-end pipeline that connects raw dengue, climate, and mosquito
-      surveillance data to trained machine-learning models and an interactive Streamlit dashboard. Each stage from ETL to
-      model training to cloud artifact storage ensures data consistency, version control, and operational readiness for weekly
-      dengue forecasting across Kaohsiung, Tainan, and Pingtung.
-    </p>
-
-    <div class="pipeline-layout">
-      <!-- Step 1 -->
-      <div class="pipeline-step">
-        <div class="pipeline-badge">1</div>
-        <h4>Raw Data Sources</h4>
-        <ul>
-          <li>Taiwan CDC dengue surveillance</li>
-          <li>CDC mosquito indices (BI, HI, CI)</li>
-          <li>NCHC climate &amp; rainfall</li>
-          <li>Taiwan population data (ArcGIS Enriched 2024)</li>
-        </ul>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="pipeline-step">
-        <div class="pipeline-badge">2</div>
-        <h4>ETL &amp; Preprocessing (Local)</h4>
-        <ul>
-          <li>Weekly aggregation to city-level time series</li>
-          <li>Missing value handling &amp; sensor-error filtering</li>
-          <li>Lag feature engineering (cases, climate, mosquito indices)</li>
-          <li>Scaling (Min–Max / z-score)</li>
-          <li>Quality control (QC) checks</li>
-        </ul>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="pipeline-step">
-        <div class="pipeline-badge">3</div>
-        <h4>Model Training (Python)</h4>
-        <ul>
-          <li>Random Forest, XGBoost, LSTM, LSTM–Transformer</li>
-          <li>Hyperparameter tuning &amp; time-series cross-validation</li>
-          <li>Separate models per city (Kaohsiung, Tainan, Pingtung)</li>
-        </ul>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="pipeline-step">
-        <div class="pipeline-badge">4</div>
-        <h4>Artifact Storage (cloud)</h4>
-        <ul>
-          <li>predictions.csv, metrics.json, residuals.csv</li>
-          <li>history.csv, feature_importance.csv, model_metadata.json</li>
-          <li>Versioned per city, model, and run timestamp</li>
-        </ul>
-      </div>
-
-      <!-- Step 5 -->
-      <div class="pipeline-step">
-        <div class="pipeline-badge">5</div>
-        <h4>Streamlit Web App (cloud)</h4>
-        <ul>
-          <li>Loads artifacts from Supabase</li>
-          <li>Forecast visualization &amp; diagnostics (EDA, ACF/PACF, residuals)</li>
-          <li>Deployed on Render Cloud</li>
-        </ul>
-      </div>
-
-      <!-- Step 6 -->
-      <div class="pipeline-step">
-        <div class="pipeline-badge">6</div>
-        <h4>End Users</h4>
-        <ul>
-          <li>City and model selection</li>
-          <li>Interactive exploration of predicted vs. actual cases</li>
-          <li>Operational insights for early warning and planning</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== RESULTS / COMPARISON ===================== -->
-<section id="results" class="section">
-  <div class="container">
-    <h2 class="section-title">3. Key Results – Model Comparison</h2>
-    <p >
-      Across all three regions, tree-based models (Random Forest and XGBoost)
-      consistently outperformed LSTM-based models in predicting weekly dengue
-      cases, especially during large outbreaks. Below is a compact summary of
-      how each model behaved by city and a cross-city performance table.
-    </p>
-
-    <!-- 3.1 City-level summaries -->
-    <h3 class="results-subtitle">3.1 City-Level Performance</h3>
-    <div class="results-grid results-city-grid">
-      <!-- Kaohsiung -->
-      <article class="results-card">
-        <h3>Kaohsiung City</h3>
-        <p class="results-meta">
-          <span class="pill-best">Best: Random Forest</span>
-          <span class="pill-metric">RMSE 19.28 · R² 0.899</span>
-        </p>
-        <ul class="nice-list">
-          <li>
-            Random Forest captured the shape and magnitude of the 2023–2024
-            outbreak with the lowest overall error.
-          </li>
-          <li>
-            XGBoost performed well (RMSE 25.53, R² 0.822) but slightly
-            underpredicted peak weeks.
-          </li>
-          <li>
-            LSTM and LSTM–Transformer produced overly smooth curves and
-            underestimated the outbreak peak (RMSE &gt; 47).
-          </li>
-        </ul>
-      </article>
-
-      <!-- Tainan -->
-      <article class="results-card">
-        <h3>Tainan City</h3>
-        <p class="results-meta">
-          <span class="pill-best">Best: XGBoost</span>
-          <span class="pill-metric">RMSE 113.88 · R² 0.928</span>
-        </p>
-        <ul class="nice-list">
-          <li>
-            Extreme 2015 and 2023–2024 outbreaks made performance differences
-            most visible in Tainan.
-          </li>
-          <li>
-            XGBoost slightly outperformed Random Forest (RMSE 121.21, R² 0.918),
-            closely tracking the steep epidemic curves.
-          </li>
-          <li>
-            LSTM and LSTM–Transformer failed to model the sharp peaks, with very
-            large errors and negative R² values.
-          </li>
-        </ul>
-      </article>
-
-      <!-- Pingtung -->
-      <article class="results-card">
-        <h3>Pingtung County</h3>
-        <p class="results-meta">
-          <span class="pill-best">Best: RF ≈ XGBoost</span>
-          <span class="pill-metric">RMSE ≈ 3.0 · R² ≈ 0.85</span>
-        </p>
-        <ul class="nice-list">
-          <li>
-            Lower, more irregular outbreaks still produced accurate forecasts
-            from Random Forest (RMSE 2.95, R² 0.856) and XGBoost
-            (RMSE 2.99, R² 0.851).
-          </li>
-          <li>
-            Tree-based models remained robust under low-count, noisy conditions.
-          </li>
-          <li>
-            LSTM and LSTM–Transformer underpredicted outbreak magnitude and
-            showed unstable validation behavior.
-          </li>
-        </ul>
-      </article>
-    </div>
-
-    <!-- 3.2 Cross-city performance table -->
-    <article class="results-card results-table-card">
-      <h3>3.2 Cross-City Performance Summary</h3>
-      <p class="results-note">
-        Cells show <strong>RMSE / R²</strong> on the test set (2022–2024). Best
-        models per city are highlighted.
-      </p>
-      <div class="results-table-wrapper">
-        <table class="results-table wide-table">
-          <thead>
-            <tr>
-              <th>City</th>
-              <th>Random Forest</th>
-              <th>XGBoost</th>
-              <th>LSTM</th>
-              <th>LSTM–Transformer</th>
-              <th>Best Model</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="highlight-row">
-              <td>Kaohsiung</td>
-              <td>19.28 / 0.899</td>
-              <td>25.53 / 0.822</td>
-              <td>54.83 / 0.288</td>
-              <td>47.17 / 0.406</td>
-              <td>Random Forest</td>
-            </tr>
-            <tr class="highlight-row">
-              <td>Tainan</td>
-              <td>121.21 / 0.918</td>
-              <td>113.88 / 0.928</td>
-              <td>483.51 / –0.122</td>
-              <td>469.91 / –0.115</td>
-              <td>XGBoost</td>
-            </tr>
-            <tr class="highlight-row">
-              <td>Pingtung</td>
-              <td>2.95 / 0.856</td>
-              <td>2.99 / 0.851</td>
-              <td>7.97 / 0.085</td>
-              <td>4.30 / 0.700</td>
-              <td>Random Forest / XGBoost</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
-
-    <!-- 3.3 Cross-city insights -->
-    <article class="results-card results-insights">
-      <h3>3.3 Cross-City Insights</h3>
-      <ul class="nice-list">
-        <li>
-          <strong>Tree-based models dominate:</strong> Random Forest and
-          XGBoost achieved the best performance in every city, providing stable
-          forecasts even with limited outbreak history.
-        </li>
-        <li>
-          <strong>Deep learning struggles with spikes:</strong> LSTM-based
-          models systematically underpredicted sharp epidemic peaks, especially
-          in Tainan, and often produced negative R² values.
-        </li>
-        <li>
-          <strong>Recent case lags drive predictions:</strong>
-          <code>cases_lag1</code> and nearby lags were consistently the most
-          important features, with climatic and mosquito indices contributing
-          more variably by region.
-        </li>
-        <li>
-          <strong>Operational takeaway:</strong> For southern Taiwan’s
-          episodic, highly skewed dengue dynamics, tree-based ML models are
-          currently more reliable than LSTM architectures for early-warning
-          forecasts.
-        </li>
-      </ul>
-    </article>
-
-    <!-- 3.4 Key visuals -->
-    <h3 class="results-subtitle">3.4 Key Visuals</h3>
-      <div class="results-visuals">
-
-        <!-- Chart 1: Outbreak pattern -->
-        <article class="chart-card">
-          <h3>Outbreak Pattern – Kaohsiung (2010–2024)</h3>
-          <img
-            src="assets/kaohsiung_timeseries.png"
-            alt="Line chart of weekly dengue cases in Kaohsiung from 2010 to 2024 showing large outbreaks in 2015 and 2023–2024."
-          />
-          <p class="chart-caption">
-            Weekly dengue cases in Kaohsiung show long periods of low
-            transmission punctuated by large outbreaks, with major peaks in
-            2015 and 2023–2024. This motivates the need for early-warning
-            models that can anticipate sudden surges.
-          </p>
-        </article>
-
-        <!-- Chart 2: Forecast vs actual -->
-        <article class="chart-card">
-          <h3>Forecast vs Actual – Kaohsiung (XGBoost)</h3>
-          <img
-            src="assets/kaohsiung_xgboost_forecast.png"
-            alt="Line chart comparing XGBoost predictions to actual weekly dengue cases in Kaohsiung during 2022–2024."
-          />
-          <p class="chart-caption">
-            XGBoost closely tracks both the rise and decline of the 2023–2024
-            outbreak, capturing peak timing and magnitude more accurately than
-            deep-learning models. This supports its selection as the primary
-            operational model.
-          </p>
-        </article>
-
-        <!-- Chart 3: Model comparison (optional) -->
-        <article class="chart-card">
-          <h3>Model RMSE Comparison – Test Set</h3>
-          <img
-            src="assets/model_rmse_comparison.png"
-            alt="Bar chart comparing RMSE across Random Forest, XGBoost, LSTM, and LSTM–Transformer for all three cities."
-          />
-          <p class="chart-caption">
-            Across Kaohsiung, Tainan, and Pingtung, tree-based models
-            (Random Forest and XGBoost) consistently achieve lower RMSE than
-            LSTM-based architectures, especially in cities with large, abrupt
-            outbreaks.
-          </p>
-        </article>
-      </div>
-      </div>
-
-
-
     </section>
 
+    <!-- ===================== RESULTS / COMPARISON ===================== -->
+    <section id="results" class="section">
+      <div class="container">
+        <h2 class="section-title">3. Key Results – Model Comparison</h2>
+        <p>
+          Across all three regions, tree-based models (Random Forest and
+          XGBoost) consistently outperformed LSTM-based models in predicting
+          weekly dengue cases, especially during large outbreaks. Below is a
+          compact summary of how each model behaved by city and a cross-city
+          performance table.
+        </p>
 
+        <!-- 3.1 City-level summaries -->
+        <h3 class="results-subtitle">3.1 City-Level Performance</h3>
+        <div class="results-grid results-city-grid">
+          <!-- Kaohsiung -->
+          <article class="results-card">
+            <h3>Kaohsiung City</h3>
+            <p class="results-meta">
+              <span class="pill-best">Best: Random Forest</span>
+              <span class="pill-metric">RMSE 19.28 · R² 0.899</span>
+            </p>
+            <ul class="nice-list">
+              <li>
+                Random Forest captured the shape and magnitude of the 2023–2024
+                outbreak with the lowest overall error.
+              </li>
+              <li>
+                XGBoost performed well (RMSE 25.53, R² 0.822) but slightly
+                underpredicted peak weeks.
+              </li>
+              <li>
+                LSTM and LSTM–Transformer produced overly smooth curves and
+                underestimated the outbreak peak (RMSE &gt; 47).
+              </li>
+            </ul>
+          </article>
+
+          <!-- Tainan -->
+          <article class="results-card">
+            <h3>Tainan City</h3>
+            <p class="results-meta">
+              <span class="pill-best">Best: XGBoost</span>
+              <span class="pill-metric">RMSE 113.88 · R² 0.928</span>
+            </p>
+            <ul class="nice-list">
+              <li>
+                Extreme 2015 and 2023–2024 outbreaks made performance
+                differences most visible in Tainan.
+              </li>
+              <li>
+                XGBoost slightly outperformed Random Forest (RMSE 121.21, R²
+                0.918), closely tracking the steep epidemic curves.
+              </li>
+              <li>
+                LSTM and LSTM–Transformer failed to model the sharp peaks, with
+                very large errors and negative R² values.
+              </li>
+            </ul>
+          </article>
+
+          <!-- Pingtung -->
+          <article class="results-card">
+            <h3>Pingtung County</h3>
+            <p class="results-meta">
+              <span class="pill-best">Best: RF ≈ XGBoost</span>
+              <span class="pill-metric">RMSE ≈ 3.0 · R² ≈ 0.85</span>
+            </p>
+            <ul class="nice-list">
+              <li>
+                Lower, more irregular outbreaks still produced accurate
+                forecasts from Random Forest (RMSE 2.95, R² 0.856) and XGBoost
+                (RMSE 2.99, R² 0.851).
+              </li>
+              <li>
+                Tree-based models remained robust under low-count, noisy
+                conditions.
+              </li>
+              <li>
+                LSTM and LSTM–Transformer underpredicted outbreak magnitude and
+                showed unstable validation behavior.
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- 3.2 Cross-city performance table -->
+        <h3 class="results-subtitle">3.2 Cross-City Performance Summary</h3>
+        <article class="results-card">
+          <p class="results-note">
+            Cells show <strong>RMSE / R²</strong> on the test set (2022–2024).
+            Best models per city are highlighted.
+          </p>
+          <div class="results-table-wrapper">
+            <table class="results-table wide-table">
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>Random Forest</th>
+                  <th>XGBoost</th>
+                  <th>LSTM</th>
+                  <th>LSTM–Transformer</th>
+                  <th>Best Model</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-row">
+                  <td>Kaohsiung</td>
+                  <td>19.28 / 0.899</td>
+                  <td>25.53 / 0.822</td>
+                  <td>54.83 / 0.288</td>
+                  <td>47.17 / 0.406</td>
+                  <td>Random Forest</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Tainan</td>
+                  <td>121.21 / 0.918</td>
+                  <td>113.88 / 0.928</td>
+                  <td>483.51 / –0.122</td>
+                  <td>469.91 / –0.115</td>
+                  <td>XGBoost</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>Pingtung</td>
+                  <td>2.95 / 0.856</td>
+                  <td>2.99 / 0.851</td>
+                  <td>7.97 / 0.085</td>
+                  <td>4.30 / 0.700</td>
+                  <td>Random Forest / XGBoost</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- 3.3 Cross-city insights -->
+        <h3 class="results-subtitle">3.3 Cross-City Insights</h3>
+        <article class="results-card">
+          <ul class="nice-list">
+            <li>
+              <strong>Tree-based models dominate:</strong> Random Forest and
+              XGBoost achieved the best performance in every city, providing
+              stable forecasts even with limited outbreak history.
+            </li>
+            <li>
+              <strong>Deep learning struggles with spikes:</strong> LSTM-based
+              models systematically underpredicted sharp epidemic peaks,
+              especially in Tainan, and often produced negative R² values.
+            </li>
+            <li>
+              <strong>Recent case lags drive predictions:</strong>
+              <code>cases_lag1</code> and nearby lags were consistently the most
+              important features, with climatic and mosquito indices
+              contributing more variably by region.
+            </li>
+            <li>
+              <strong>Operational takeaway:</strong> For southern Taiwan’s
+              episodic, highly skewed dengue dynamics, tree-based ML models are
+              currently more reliable than LSTM architectures for early-warning
+              forecasts.
+            </li>
+          </ul>
+        </article>
+
+        <!-- 3.4 Key visuals -->
+        <h3 class="results-subtitle">3.4 Key Visuals</h3>
+        <div class="results-visuals">
+          <!-- Chart 1: Outbreak pattern -->
+          <article class="chart-card">
+            <h3>Outbreak Pattern – Kaohsiung (2010–2024)</h3>
+            <img
+              src="assets/kaohsiung_timeseries.png"
+              alt="Line chart of weekly dengue cases in Kaohsiung from 2010 to 2024 showing large outbreaks in 2015 and 2023–2024."
+            />
+            <p class="chart-caption">
+              Weekly dengue cases in Kaohsiung show long periods of low
+              transmission punctuated by large outbreaks, with major peaks in
+              2015 and 2023–2024. This motivates the need for early-warning
+              models that can anticipate sudden surges.
+            </p>
+          </article>
+
+          <!-- Chart 2: Forecast vs actual -->
+          <article class="chart-card">
+            <h3>Forecast vs Actual – Kaohsiung (XGBoost)</h3>
+            <img
+              src="assets/kaohsiung_xgboost_forecast.png"
+              alt="Line chart comparing XGBoost predictions to actual weekly dengue cases in Kaohsiung during 2022–2024."
+            />
+            <p class="chart-caption">
+              XGBoost closely tracks both the rise and decline of the 2023–2024
+              outbreak, capturing peak timing and magnitude more accurately than
+              deep-learning models. This supports its selection as the primary
+              operational model.
+            </p>
+          </article>
+
+          <!-- Chart 3: Model comparison (optional) -->
+          <article class="chart-card">
+            <h3>Model RMSE Comparison – Test Set</h3>
+            <img
+              src="assets/model_rmse_comparison.png"
+              alt="Bar chart comparing RMSE across Random Forest, XGBoost, LSTM, and LSTM–Transformer for all three cities."
+            />
+            <p class="chart-caption">
+              Across Kaohsiung, Tainan, and Pingtung, tree-based models (Random
+              Forest and XGBoost) consistently achieve lower RMSE than
+              LSTM-based architectures, especially in cities with large, abrupt
+              outbreaks.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <!-- ===================== TOOLS: ARC GIS + STREAMLIT ===================== -->
-    <section id="tools" class="tools-section">
+    <section id="results" class="tools-section section-alt">
       <div class="container">
- <h2 class="section-title">4. Interactive Tools</h2>
+        <h2 class="section-title">4. Interactive Tools</h2>
 
-  <article class="tool-block">
-    <h3>4.1 ArcGIS Online Dashboard</h3>
-    <p>
-      An ArcGIS Online dashboard was developed to visualize spatiotemporal dengue patterns,
-      mosquito indices, and rainfall intensity across Taiwan from 2010–2025. This dashboard
-      highlights the concentration of outbreaks in Southern Taiwan and supports exploratory
-      analysis of space–time clustering.
-    </p>
-    <div class="tool-card">
-        <iframe 
-        src="https://experience.arcgis.com/experience/1eebab4280a549d294e274392d64625f"
-        width="100%" 
-        height="500" 
-        style="border:0; border-radius:12px;">
-        </iframe>
-      <p class="tool-caption">
-      </p>
-    </div>
-  </article>
+        <article class="tool-block">
+          <h3 class="results-subtitle">4.1 ArcGIS Online Dashboard</h3>
+          <p>
+            An ArcGIS Online dashboard was developed to visualize spatiotemporal
+            dengue patterns, mosquito indices, and rainfall intensity across
+            Taiwan from 2010–2025. This dashboard highlights the concentration
+            of outbreaks in Southern Taiwan and supports exploratory analysis of
+            space–time clustering.
+          </p>
+          <div class="tool-card">
+            <iframe
+              src="https://experience.arcgis.com/experience/1eebab4280a549d294e274392d64625f"
+              width="100%"
+              height="500"
+              style="border: 0; border-radius: 12px"
+            >
+            </iframe>
+            <p class="tool-caption"></p>
+          </div>
+        </article>
 
-  <article class="tool-block">
-    <h3>4.2 Streamlit Forecasting App</h3>
-    <p>
-  A Streamlit web application lets users explore EDA, ACF/PACF, model
-  performance, and forecast diagnostics for each city. Users can switch
-  between Random Forest, XGBoost, LSTM, and LSTM–Transformer to compare
-  test metrics and inspect predicted vs. actual time series.
-</p>
- <div class="tool-card">
-  <a href="https://dengue-taiwan-forecast.onrender.com/" target="_blank">
-    <img
-      src="assets/streamlit-app.png"
-      alt="Live Streamlit dengue forecasting dashboard"
-    />
-  </a>
-  <p class="tool-caption">
-    <strong>Dengue Forecasting Dashboard</strong><br />
-    Interactive Streamlit app to explore city-level dengue forecasts, model
-    comparisons, and outbreak diagnostics.<br />
-    <a
-      href="https://dengue-taiwan-forecast.onrender.com/"
-      target="_blank"
-      class="launch-btn"
-    >
-      Launch Live App →
-    </a>
-  </p>
-      <p>
-Four-panel summary of the Streamlit dengue forecasting dashboard. 
-(1) Exploratory Data Analysis (EDA) visualizes long-term dengue case trends and climate patterns for each city. 
-(2) Autocorrelation and partial autocorrelation functions reveal temporal dependencies essential for model training. 
-(3) The single-model forecast view displays predicted vs. actual dengue case trajectories using models such as Random Forest, XGBoost, LSTM, or LSTM–Transformer. 
-(4) The model comparison module summarizes performance metrics (e.g., RMSE, MAE, MAPE) across all models to identify the best-performing approach.
-</p>
-</div>
-
-  </article>
-</section>
-
-<!-- ===================== SWOT ===================== -->
-<section id="swot" class="section">
-  <div class="container">
-    <h2 class="section-title">5. SWOT Analysis</h2>
-    <p>
-      The table below summarizes the strengths, weaknesses, opportunities,
-      and threats of the proposed dengue forecasting framework and its
-      implementation in Southern Taiwan.
-    </p>
-
-    <div class="swot-grid">
-      <div class="swot-box swot-strengths">
-        <h3>Strengths</h3>
-        <ul>
-          <li>Strong predictive performance from tree-based models.</li>
-          <li>Comprehensive 15-year dataset integrating dengue, climate, and vector indices.</li>
-          <li>Interpretable feature importance and diagnostic tools.</li>
-          <li>Interactive dashboards enabling exploratory analysis and model comparison.</li>
-        </ul>
+        <article class="tool-block">
+          <h3 class="results-subtitle">4.2 Streamlit Forecasting App</h3>
+          <p>
+            A Streamlit web application lets users explore EDA, ACF/PACF, model
+            performance, and forecast diagnostics for each city. Users can
+            switch between Random Forest, XGBoost, LSTM, and LSTM–Transformer to
+            compare test metrics and inspect predicted vs. actual time series.
+          </p>
+          <div class="tool-card">
+            <a
+              href="https://dengue-taiwan-forecast.onrender.com/"
+              target="_blank"
+            >
+              <img
+                src="assets/streamlit-app.png"
+                alt="Live Streamlit dengue forecasting dashboard"
+              />
+            </a>
+            <p class="tool-caption">
+              <strong>Dengue Forecasting Dashboard</strong><br />
+              Interactive Streamlit app to explore city-level dengue forecasts,
+              model comparisons, and outbreak diagnostics.<br />
+              <a
+                href="https://dengue-taiwan-forecast.onrender.com/"
+                target="_blank"
+                class="launch-btn"
+              >
+                Launch Live App →
+              </a>
+            </p>
+            <p>
+              Four-panel summary of the Streamlit dengue forecasting dashboard.
+              (1) Exploratory Data Analysis (EDA) visualizes long-term dengue
+              case trends and climate patterns for each city. (2)
+              Autocorrelation and partial autocorrelation functions reveal
+              temporal dependencies essential for model training. (3) The
+              single-model forecast view displays predicted vs. actual dengue
+              case trajectories using models such as Random Forest, XGBoost,
+              LSTM, or LSTM–Transformer. (4) The model comparison module
+              summarizes performance metrics (e.g., RMSE, MAE, MAPE) across all
+              models to identify the best-performing approach.
+            </p>
+          </div>
+        </article>
       </div>
+    </section>
 
-      <div class="swot-box swot-weaknesses">
-        <h3>Weaknesses</h3>
-        <ul>
-          <li>Missing and noisy mosquito and climate data requiring imputation.</li>
-          <li>Weekly resolution limits detection of rapid environmental changes.</li>
-          <li>City-level scale lacks finer neighborhood-level insights.</li>
-          <li>Few large historical outbreaks reduce model generalizability.</li>
-          <li>Short development timeline and free-tier cloud hosting restrict optimization and performance.</li>
-        </ul>
+    <!-- ===================== SWOT ===================== -->
+    <section id="swot" class="section">
+      <div class="container">
+        <h2 class="section-title">5. SWOT Analysis</h2>
+        <p>
+          The table below summarizes the strengths, weaknesses, opportunities,
+          and threats of the proposed dengue forecasting framework and its
+          implementation in Southern Taiwan.
+        </p>
+
+        <div class="swot-grid">
+          <div class="swot-box swot-strengths">
+            <h3>Strengths</h3>
+            <ul>
+              <li>Strong predictive performance from tree-based models.</li>
+              <li>
+                Comprehensive 15-year dataset integrating dengue, climate, and
+                vector indices.
+              </li>
+              <li>Interpretable feature importance and diagnostic tools.</li>
+              <li>
+                Interactive dashboards enabling exploratory analysis and model
+                comparison.
+              </li>
+            </ul>
+          </div>
+
+          <div class="swot-box swot-weaknesses">
+            <h3>Weaknesses</h3>
+            <ul>
+              <li>
+                Missing and noisy mosquito and climate data requiring
+                imputation.
+              </li>
+              <li>
+                Weekly resolution limits detection of rapid environmental
+                changes.
+              </li>
+              <li>City-level scale lacks finer neighborhood-level insights.</li>
+              <li>
+                Few large historical outbreaks reduce model generalizability.
+              </li>
+              <li>
+                Short development timeline and free-tier cloud hosting restrict
+                optimization and performance.
+              </li>
+            </ul>
+          </div>
+
+          <div class="swot-box swot-opportunities">
+            <h3>Opportunities</h3>
+            <ul>
+              <li>
+                Integrate mobility, satellite, and land-use data for improved
+                early warnings.
+              </li>
+              <li>
+                Adopt advanced spatiotemporal models (TFT, GNN, hybrid deep
+                learning).
+              </li>
+              <li>
+                Increase spatial resolution for district- or village-level risk
+                mapping.
+              </li>
+              <li>
+                Build automated pipelines and migrate to more scalable cloud
+                infrastructure.
+              </li>
+            </ul>
+          </div>
+
+          <div class="swot-box swot-threats">
+            <h3>Threats</h3>
+            <ul>
+              <li>
+                Climate change may alter outbreak patterns and reduce model
+                stability.
+              </li>
+              <li>
+                Surveillance inconsistencies and reporting delays can degrade
+                forecast accuracy.
+              </li>
+              <li>
+                Emerging serotypes or vector shifts may weaken model
+                assumptions.
+              </li>
+              <li>
+                Human mobility can trigger unpredictable outbreak clusters.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <div class="swot-box swot-opportunities">
-        <h3>Opportunities</h3>
-        <ul>
-          <li>Integrate mobility, satellite, and land-use data for improved early warnings.</li>
-          <li>Adopt advanced spatiotemporal models (TFT, GNN, hybrid deep learning).</li>
-          <li>Increase spatial resolution for district- or village-level risk mapping.</li>
-          <li>Build automated pipelines and migrate to more scalable cloud infrastructure.</li>
-        </ul>
-      </div>
-
-      <div class="swot-box swot-threats">
-        <h3>Threats</h3>
-        <ul>
-          <li>Climate change may alter outbreak patterns and reduce model stability.</li>
-          <li>Surveillance inconsistencies and reporting delays can degrade forecast accuracy.</li>
-          <li>Emerging serotypes or vector shifts may weaken model assumptions.</li>
-          <li>Human mobility can trigger unpredictable outbreak clusters.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <section id="about" class="section section-alt">
       <div class="container">
-<h2 class="section-title">6. About the Author</h2>
+        <h2 class="section-title">6. About the Author</h2>
         <div class="two-column">
           <div>
             <h3>BDA Program Learning Outcomes</h3>
@@ -708,7 +762,7 @@ Four-panel summary of the Streamlit dengue forecasting dashboard.
               operational systems.
             </p>
           </div>
-          
+
           <div>
             <h3>Resources & Downloads</h3>
             <ul class="nice-list">
@@ -718,10 +772,14 @@ Four-panel summary of the Streamlit dengue forecasting dashboard.
                 >
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/aichutan/" target="_blank">My Linkedin</a>
+                <a href="https://www.linkedin.com/in/aichutan/" target="_blank"
+                  >My Linkedin</a
+                >
               </li>
               <li>
-                <a href="https://github.com/AichuTan/Dengue_Taiwan_Forecast" target="_blank"
+                <a
+                  href="https://github.com/AichuTan/Dengue_Taiwan_Forecast"
+                  target="_blank"
                   >GitHub Repository (Code & Notebooks)</a
                 >
               </li>
@@ -735,38 +793,47 @@ Four-panel summary of the Streamlit dengue forecasting dashboard.
         </div>
       </div>
     </section>
-<!-- ===================== ACKNOWLEDGEMENTS ===================== -->
-<section id="acknowledgements" class="section">
-<div class="container">
-  <p class="acknowledgement">
-    <strong>Acknowledgements:</strong> I would like to express my sincere
-    gratitude to Dr. Ming-Hsiang Tsou 
-    (<a href="https://www.linkedin.com/in/ming-hsiang-tsou-b6179212/" target="_blank">Prof. Tsou</a>), 
-    Director of the SDSU Big Data Analytics Program, for his leadership and 
-    support throughout my graduate studies. I am also deeply thankful to 
-    Dr. Gabriela Fernandez 
-    (<a href="https://www.linkedin.com/in/gabriela-fernandez-p-h-d-56873843/" target="_blank">Prof. Fernandez</a>), 
-    Graduate Advisor of the Metabolism of Cities Living Lab 
-    (<a href="https://metabolismofcities-llab.org/metabolism-of-cities-living-lab-moc-llab/" target="_blank">MOC-LLAB</a>), 
-    for her guidance and encouragement during the development of this project. 
-    I additionally extend my appreciation to Dr. Naveen K. Vaidya 
-    (<a href="https://www.linkedin.com/in/dr-naveen-k-vaidya-21759719/" target="_blank">Prof. Vaidya</a>) 
-    and the SDSU DiMoLab 
-    (<a href="https://nvaidya.sdsu.edu/DiMoLab.html" target="_blank">DiMoLab</a>) 
-    for their influential work in infectious-disease modeling, which helped shape 
-    the analytical direction of this capstone.
-  </p>
-</div>
-
-  </div>
-</section>
+    <!-- ===================== ACKNOWLEDGEMENTS ===================== -->
+    <section id="acknowledgements" class="section">
+      <div class="container">
+        <p class="acknowledgement">
+          <strong>Acknowledgements:</strong> I would like to express my sincere
+          gratitude to Dr. Ming-Hsiang Tsou (<a
+            href="https://www.linkedin.com/in/ming-hsiang-tsou-b6179212/"
+            target="_blank"
+            >Prof. Tsou</a
+          >), Director of the SDSU Big Data Analytics Program, for his
+          leadership and support throughout my graduate studies. I am also
+          deeply thankful to Dr. Gabriela Fernandez (<a
+            href="https://www.linkedin.com/in/gabriela-fernandez-p-h-d-56873843/"
+            target="_blank"
+            >Prof. Fernandez</a
+          >), Graduate Advisor of the Metabolism of Cities Living Lab (<a
+            href="https://metabolismofcities-llab.org/metabolism-of-cities-living-lab-moc-llab/"
+            target="_blank"
+            >MOC-LLAB</a
+          >), for her guidance and encouragement during the development of this
+          project. I additionally extend my appreciation to Dr. Naveen K. Vaidya
+          (<a
+            href="https://www.linkedin.com/in/dr-naveen-k-vaidya-21759719/"
+            target="_blank"
+            >Prof. Vaidya</a
+          >) and the SDSU DiMoLab (<a
+            href="https://nvaidya.sdsu.edu/DiMoLab.html"
+            target="_blank"
+            >DiMoLab</a
+          >) for their influential work in infectious-disease modeling, which
+          helped shape the analytical direction of this capstone.
+        </p>
+      </div>
+    </section>
 
     <!-- ===================== FOOTER ===================== -->
     <footer class="site-footer">
       <div class="container footer-inner">
         <p>
-          &copy; <span id="year"></span> Dengue Forecasting in Southern Taiwan – SDSU Big Data Analytics
-          Capstone Project.
+          &copy; <span id="year"></span> Dengue Forecasting in Southern Taiwan –
+          SDSU Big Data Analytics Capstone Project.
         </p>
         <p class="footer-small">
           Built with HTML, CSS, ArcGIS Online, and Streamlit.
