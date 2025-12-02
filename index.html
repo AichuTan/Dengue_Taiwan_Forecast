@@ -68,7 +68,10 @@
         <div class="hero-card snapshot-card">
           <h2>Project Snapshot</h2>
           <ul>
-            <li><strong>Region:</strong> Southern Taiwan</li>
+            <li>
+              <strong>Region:</strong> Southern Taiwan (Kaohsiung, Tainan,
+              Pingtung)
+            </li>
             <li><strong>Focus:</strong> Weekly dengue forecasting</li>
             <li>
               <strong>Data:</strong> 2010–2024 dengue, climate, rainfall,
@@ -78,12 +81,12 @@
               <strong>Models:</strong> RF, XGBoost, LSTM, LSTM–Transformer
             </li>
             <li>
-              <strong>Pipeline:</strong> ETL → lag features → validation → cloud
-              app
+              <strong>Pipeline:</strong> ETL → lag features → ML/DL training →
+              Supabase cloud → Streamlit app
             </li>
             <li>
-              <strong>Goal:</strong> Early-warning for public health & vector
-              control
+              <strong>Goal:</strong> Early-warning tool for dengue risk and
+              public health planning
             </li>
           </ul>
         </div>
@@ -287,6 +290,18 @@
               </ul>
             </div>
 
+            <!-- Step 4 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">4</div>
+              <h4>Artifact Storage (cloud)</h4>
+              <ul>
+                <li>predictions.csv, metrics.json, residuals.csv</li>
+                <li>
+                  history.csv, feature_importance.csv, model_metadata.json
+                </li>
+                <li>Versioned per city, model, and run timestamp</li>
+              </ul>
+            </div>
             <!-- Step 2 -->
             <div class="pipeline-step">
               <div class="pipeline-badge">2</div>
@@ -301,33 +316,6 @@
                 <li>Quality control (QC) checks</li>
               </ul>
             </div>
-
-            <!-- Step 3 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">3</div>
-              <h4>Model Training (Python)</h4>
-              <ul>
-                <li>Random Forest, XGBoost, LSTM, LSTM–Transformer</li>
-                <li>
-                  Hyperparameter tuning &amp; time-series cross-validation
-                </li>
-                <li>Separate models per city (Kaohsiung, Tainan, Pingtung)</li>
-              </ul>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">4</div>
-              <h4>Artifact Storage (cloud)</h4>
-              <ul>
-                <li>predictions.csv, metrics.json, residuals.csv</li>
-                <li>
-                  history.csv, feature_importance.csv, model_metadata.json
-                </li>
-                <li>Versioned per city, model, and run timestamp</li>
-              </ul>
-            </div>
-
             <!-- Step 5 -->
             <div class="pipeline-step">
               <div class="pipeline-badge">5</div>
@@ -339,6 +327,19 @@
                   residuals)
                 </li>
                 <li>Deployed on Render Cloud</li>
+              </ul>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="pipeline-step">
+              <div class="pipeline-badge">3</div>
+              <h4>Model Training (Python)</h4>
+              <ul>
+                <li>Random Forest, XGBoost, LSTM, LSTM–Transformer</li>
+                <li>
+                  Hyperparameter tuning &amp; time-series cross-validation
+                </li>
+                <li>Separate models per city (Kaohsiung, Tainan, Pingtung)</li>
               </ul>
             </div>
 
@@ -526,7 +527,9 @@
         <div class="results-visuals">
           <!-- Chart 1: Outbreak pattern -->
           <article class="chart-card">
-            <h3>Outbreak Pattern – Kaohsiung (2010–2024)</h3>
+            <h3 class="results-subtitle key-visuals">
+              Outbreak Pattern – Kaohsiung (2010–2024)
+            </h3>
             <img
               src="assets/kaohsiung_timeseries.png"
               alt="Line chart of weekly dengue cases in Kaohsiung from 2010 to 2024 showing large outbreaks in 2015 and 2023–2024."
@@ -541,7 +544,9 @@
 
           <!-- Chart 2: Forecast vs actual -->
           <article class="chart-card">
-            <h3>Forecast vs Actual – Kaohsiung (XGBoost)</h3>
+            <h3 class="results-subtitle key-visuals">
+              Forecast vs Actual – Kaohsiung (XGBoost)
+            </h3>
             <img
               src="assets/kaohsiung_xgboost_forecast.png"
               alt="Line chart comparing XGBoost predictions to actual weekly dengue cases in Kaohsiung during 2022–2024."
@@ -556,7 +561,9 @@
 
           <!-- Chart 3: Model comparison (optional) -->
           <article class="chart-card">
-            <h3>Model RMSE Comparison – Test Set</h3>
+            <h3 class="results-subtitle key-visuals">
+              Model RMSE Comparison – Test Set
+            </h3>
             <img
               src="assets/model_rmse_comparison.png"
               alt="Bar chart comparing RMSE across Random Forest, XGBoost, LSTM, and LSTM–Transformer for all three cities."
