@@ -159,101 +159,173 @@
     <section id="methods" class="section section-alt">
       <div class="container">
         <h2 class="section-title">2. Methodology &amp; Models</h2>
+
         <p>
-          The framework links a multi-source dengue–climate–vector dataset to
-          city-specific forecasting models, evaluated on a held-out 2022–2024
-          test window for Kaohsiung, Tainan, and Pingtung.
+          This project builds an end-to-end forecasting pipeline that links
+          multi-source dengue, climate, and mosquito surveillance data to
+          city-specific models for Kaohsiung, Tainan, and Pingtung. Models are
+          trained on 2010–2021 data and evaluated on a held-out 2022–2024 test
+          window.
         </p>
-        <div id="results">
-          <h3 class="results-subtitle">2.1 Forecasting Setup</h3>
-          <ul class="nice-list methods-list">
-            <li>
-              <strong>Task :</strong>
-              One-week-ahead prediction of weekly dengue cases, with a separate
-              model per city.
-            </li>
-            <li>
-              <strong>Splits :</strong>
-              Train 2010–2017, validation 2018–2021, test 2022–2024
-              (chronological, no shuffling).
-            </li>
-            <li>
-              <strong>Validation :</strong>
-              Time-series cross-validation for tree models; fixed validation
-              window and early stopping for LSTM-based models.
-            </li>
-            <li>
-              <strong>Metrics :</strong>
-              RMSE, MAE, MSE, and R² on held-out weekly test data.
-            </li>
-          </ul>
 
-          <hr class="methods-divider" />
-
-          <h3 class="results-subtitle">2.2 Models Compared</h3>
-          <div class="card-grid model-grid">
-            <article class="model-card">
-              <h4>Random Forest</h4>
-              <p>
-                Ensemble of decision trees capturing nonlinear relations between
-                lagged climate, mosquito indices, and dengue. Tuned over tree
-                depth, number of estimators, and feature subsampling using
-                time-based cross-validation.
-              </p>
-            </article>
-
-            <article class="model-card best-model">
-              <h4>XGBoost</h4>
-              <p>
-                Gradient-boosted trees optimized for tabular time-series data.
-                Grid search over learning rate, max depth, and number of
-                boosting rounds. Typically achieved the lowest RMSE and highest
-                R² across cities.
-              </p>
-            </article>
-
-            <article class="model-card">
-              <h4>LSTM (Lag Features)</h4>
-              <p>
-                Sequence model trained on 24-week input windows of standardized
-                lagged features. Uses Adam optimization and sample weighting to
-                emphasize outbreak weeks but tends to smooth sharp peaks.
-              </p>
-            </article>
-
-            <article class="model-card">
-              <h4>LSTM–Transformer</h4>
-              <p>
-                LSTM encoder with multi-head self-attention and cyclic calendar
-                features to capture short- and long-range seasonality.
-                Performance is constrained by sparse outbreak history in some
-                cities.
-              </p>
-            </article>
-          </div>
-
-          <hr class="methods-divider" />
-
-          <h3 class="results-subtitle">2.4 End-to-End Forecasting Pipeline</h3>
-
-          <p>
-            The forecasting system follows a fully reproducible end-to-end
-            pipeline that connects raw dengue, climate, and mosquito
-            surveillance data to trained machine-learning models and an
-            interactive Streamlit dashboard. Each stage from ETL to model
-            training to cloud artifact storage ensures data consistency, version
-            control, and operational readiness for weekly dengue forecasting
-            across Kaohsiung, Tainan, and Pingtung.
-          </p>
-          <!-- === PIPELINE IMAGE INSERTED HERE === -->
-          <div class="pipeline-image-container">
-            <img
-              src="assets/pipeline_diagram.png"
-              alt="End-to-End Dengue Forecasting Pipeline"
-              class="pipeline-image"
-            />
-          </div>
+        <!-- 2.1 End-to-End Pipeline -->
+        <h3 class="results-subtitle">2.1 End-to-End Forecasting Pipeline</h3>
+        <p>
+          The workflow has four main stages: (1) raw data ingestion from Taiwan
+          CDC, mosquito inspections, NCHC climate feeds, and population
+          statistics; (2) local ETL and preprocessing to build a clean weekly
+          city-level time series; (3) model training and validation using Random
+          Forest, XGBoost, LSTM, and LSTM–Transformer; and (4) cloud storage of
+          model artifacts in Supabase, which are then visualized in a Streamlit
+          web app deployed on Render.
+        </p>
+        <div class="pipeline-image-container">
+          <img
+            src="assets/pipeline_diagram.png"
+            alt="End-to-End Dengue Forecasting Pipeline"
+            class="pipeline-image"
+          />
         </div>
+
+        <hr class="methods-divider" />
+
+        <!-- 2.2 Data Sources & Database Management -->
+        <h3 class="results-subtitle">
+          2.2 Data Sources &amp; Database Management
+        </h3>
+        <p>
+          Four primary datasets are integrated: (1) weekly dengue cases from
+          Taiwan CDC (2010–2024); (2) mosquito larval indices (BI, HI, CI) from
+          field inspections; (3) daily meteorological and rainfall data from
+          NCHC; and (4) city-level population density derived from official
+          statistics and ArcGIS enrichment. All raw data are cleaned and merged
+          locally in Python. After training, model outputs, such as
+          <code>predictions.csv</code>, <code>metrics.json</code>,
+          <code>residuals.csv</code>, <code>history.csv</code>, and
+          <code>feature_importance.csv</code>are uploaded to Supabase Cloud
+          Storage. This centralized, versioned store allows the Streamlit app to
+          retrieve artifacts on demand without re-running models.
+        </p>
+
+        <hr class="methods-divider" />
+
+        <!-- 2.3 ETL & Feature Engineering -->
+        <h3 class="results-subtitle">
+          2.3 ETL, Cleaning &amp; Feature Engineering
+        </h3>
+        <p>
+          Daily dengue, climate, and mosquito data are aggregated to weekly
+          city-level time series to match epidemiological reporting cycles.
+          Missing case counts are treated as true zeros, meteorological gaps are
+          filled via time-based interpolation, and mosquito indices are
+          forward/backward filled between inspections. Implausible sentinel
+          values are removed and temperature consistency constraints (Tmin ≤
+          Tmean ≤ Tmax) are enforced. For tree-based models, engineered lag
+          features (1, 2, 4, 8, 10, 11, 12, 15 weeks) are created for cases,
+          rainfall, temperature, humidity, windspeed, and BI/HI/CI. Continuous
+          variables are standardized with z-scores for Random Forest/XGBoost and
+          Min–Max scaled for deep learning models.
+        </p>
+
+        <hr class="methods-divider" />
+
+        <!-- 2.4 Modeling Setup -->
+        <h3 class="results-subtitle">2.4 Modeling Setup</h3>
+        <ul class="nice-list methods-list">
+          <li>
+            <strong>Task:</strong>
+            One-week-ahead prediction of weekly dengue cases, with a separate
+            model per city.
+          </li>
+          <li>
+            <strong>Data splits:</strong>
+            Train 2010–2017, validation 2018–2021, test 2022–2024
+            (chronological, no shuffling).
+          </li>
+          <li>
+            <strong>Validation:</strong>
+            Time-series cross-validation for Random Forest/XGBoost; fixed
+            validation window with early stopping for LSTM-based models.
+          </li>
+          <li>
+            <strong>Metrics:</strong>
+            MSE, RMSE, MAE, MAPE, and R² evaluated on the held-out test period.
+          </li>
+        </ul>
+
+        <hr class="methods-divider" />
+
+        <!-- 2.5 Models & Architectures -->
+        <h3 class="results-subtitle">2.5 Models &amp; Architectures</h3>
+        <div class="card-grid model-grid">
+          <article class="model-card">
+            <h4>Random Forest</h4>
+
+            <p>
+              Random Forest models were optimized using a time-series aware
+              hyperparameter search. The search explored the number of trees
+              (300–700), maximum tree depth (none, 15, 25), minimum split
+              requirements, and feature subsampling ratios (0.7, 1.0, √p).
+              Bootstrap sampling was enabled. The best configuration for each
+              city was selected based on validation MAE.
+            </p>
+          </article>
+
+          <article class="model-card best-model">
+            <h4>XGBoost</h4>
+            <p>
+              XGBoost models were tuned using a targeted grid search designed
+              for time-series forecasting. The search explored tree depth (2–8),
+              learning rates (0.01–0.07), number of boosting rounds (500–800),
+              and sampling ratios for rows (0.8–1.0) and features (0.8–1.0). A
+              fixed random seed ensured reproducibility. XGBoost consistently
+              achieved the lowest RMSE and highest R² across cities.
+            </p>
+          </article>
+
+          <article class="model-card">
+            <h4>LSTM (Lag Features)</h4>
+            <p>
+              The LSTM (Lag Features) model first engineers 1–2 week lags of
+              dengue cases, rainfall, temperature, humidity, windspeed, and
+              mosquito indices (BI, HI, CI), then feeds standardized 24-week
+              input windows into a stacked LSTM network. The model is trained on
+              log-transformed cases using Adam optimization, early stopping, and
+              sample weighting to give more importance to outbreak weeks.
+            </p>
+          </article>
+
+          <article class="model-card">
+            <h4>LSTM–Transformer</h4>
+            <p>
+              The LSTM–Transformer model was tuned using a small, focused
+              hyperparameter search designed for limited outbreak data. The
+              search varied the input window length (4–16 weeks), number of
+              attention heads (2–4), and transformer feed-forward dimension
+              (64), while keeping the learning rate (0.001), dropout (0.0), and
+              batch size (64) fixed. The combination with the lowest validation
+              loss for each city was selected as the final architecture.
+            </p>
+          </article>
+        </div>
+
+        <hr class="methods-divider" />
+
+        <!-- 2.6 Deployment & Interaction -->
+        <h3 class="results-subtitle">
+          2.6 Deployment &amp; Interactive Visualization
+        </h3>
+        <p>
+          A Streamlit app, deployed on Render, serves as the main interface for
+          exploring forecasts and diagnostics. The app connects to Supabase to
+          load predictions, metrics, residuals, training history, and feature
+          importance per city and model. Users can switch between Kaohsiung,
+          Tainan, and Pingtung, compare Random Forest, XGBoost, LSTM, and
+          LSTM–Transformer side by side, and inspect EDA, ACF/PACF plots, and
+          residual behavior. This design separates heavy offline training from
+          lightweight cloud delivery, making the system reproducible and easy to
+          extend.
+        </p>
       </div>
     </section>
 
