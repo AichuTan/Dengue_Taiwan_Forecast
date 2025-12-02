@@ -93,3 +93,21 @@ Author
 Aichu Tan
 Master of Science in Big Data Analytics
 San Diego State University
+
+### Project Website  
+https://aichutan.github.io/Dengue_Taiwan_Forecast/
+
+### ArcGIS Spatiotemporal Dashboard  
+https://experience.arcgis.com/experience/1eebab4280a549d294e274392d64625f
+
+### Live Streamlit Forecasting App  
+https://dengue-taiwan-forecast.onrender.com/
+
+### 🎥 Video Presentation  
+(Insert link once available)
+
+---
+
+## License  
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for details.
