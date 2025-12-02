@@ -165,38 +165,7 @@
           test window for Kaohsiung, Tainan, and Pingtung.
         </p>
         <div id="results">
-          <h3 class="results-subtitle">2.1 Data Pipeline</h3>
-          <ul class="nice-list methods-list">
-            <li>
-              <strong>Sources:</strong>
-              Taiwan CDC (dengue &amp; BI/HI/CI), NCHC weather &amp; rainfall,
-              and population density (ArcGIS Enriched 2024).
-            </li>
-            <li>
-              <strong>Integration :</strong>
-              Weekly city-level time series from 2010–2024 for Kaohsiung,
-              Tainan, and Pingtung.
-            </li>
-            <li>
-              <strong>Processing :</strong>
-              Outlier and sensor-error filtering, interpolation of climate gaps,
-              and forward/backward fill for mosquito indices.
-            </li>
-            <li>
-              <strong>Features :</strong>
-              1–15 week lags for dengue, temperature, rainfall, and vector
-              indices; rolling means and week-of-year indicators.
-            </li>
-            <li>
-              <strong>Scaling : </strong>
-              Min–Max for deep-learning models; z-score normalization for
-              tree-based models.
-            </li>
-          </ul>
-
-          <hr class="methods-divider" />
-
-          <h3 class="results-subtitle">2.2 Forecasting Setup</h3>
+          <h3 class="results-subtitle">2.1 Forecasting Setup</h3>
           <ul class="nice-list methods-list">
             <li>
               <strong>Task :</strong>
@@ -221,7 +190,7 @@
 
           <hr class="methods-divider" />
 
-          <h3 class="results-subtitle">2.3 Models Compared</h3>
+          <h3 class="results-subtitle">2.2 Models Compared</h3>
           <div class="card-grid model-grid">
             <article class="model-card">
               <h4>Random Forest</h4>
@@ -276,83 +245,13 @@
             control, and operational readiness for weekly dengue forecasting
             across Kaohsiung, Tainan, and Pingtung.
           </p>
-
-          <div class="pipeline-layout">
-            <!-- Step 1 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">1</div>
-              <h4>Raw Data Sources</h4>
-              <ul>
-                <li>Taiwan CDC dengue surveillance</li>
-                <li>CDC mosquito indices (BI, HI, CI)</li>
-                <li>NCHC climate &amp; rainfall</li>
-                <li>Taiwan population data (ArcGIS Enriched 2024)</li>
-              </ul>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">4</div>
-              <h4>Artifact Storage (cloud)</h4>
-              <ul>
-                <li>predictions.csv, metrics.json, residuals.csv</li>
-                <li>
-                  history.csv, feature_importance.csv, model_metadata.json
-                </li>
-                <li>Versioned per city, model, and run timestamp</li>
-              </ul>
-            </div>
-            <!-- Step 2 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">2</div>
-              <h4>ETL &amp; Preprocessing (Local)</h4>
-              <ul>
-                <li>Weekly aggregation to city-level time series</li>
-                <li>Missing value handling &amp; sensor-error filtering</li>
-                <li>
-                  Lag feature engineering (cases, climate, mosquito indices)
-                </li>
-                <li>Scaling (Min–Max / z-score)</li>
-                <li>Quality control (QC) checks</li>
-              </ul>
-            </div>
-            <!-- Step 5 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">5</div>
-              <h4>Streamlit Web App (cloud)</h4>
-              <ul>
-                <li>Loads artifacts from Supabase</li>
-                <li>
-                  Forecast visualization &amp; diagnostics (EDA, ACF/PACF,
-                  residuals)
-                </li>
-                <li>Deployed on Render Cloud</li>
-              </ul>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">3</div>
-              <h4>Model Training (Python)</h4>
-              <ul>
-                <li>Random Forest, XGBoost, LSTM, LSTM–Transformer</li>
-                <li>
-                  Hyperparameter tuning &amp; time-series cross-validation
-                </li>
-                <li>Separate models per city (Kaohsiung, Tainan, Pingtung)</li>
-              </ul>
-            </div>
-
-            <!-- Step 6 -->
-            <div class="pipeline-step">
-              <div class="pipeline-badge">6</div>
-              <h4>End Users</h4>
-              <ul>
-                <li>City and model selection</li>
-                <li>Interactive exploration of predicted vs. actual cases</li>
-                <li>Operational insights for early warning and planning</li>
-              </ul>
-            </div>
+          <!-- === PIPELINE IMAGE INSERTED HERE === -->
+          <div class="pipeline-image-container">
+            <img
+              src="assets/pipeline_diagram.png"
+              alt="End-to-End Dengue Forecasting Pipeline"
+              class="pipeline-image"
+            />
           </div>
         </div>
       </div>
@@ -815,13 +714,9 @@
             href="https://www.linkedin.com/in/gabriela-fernandez-p-h-d-56873843/"
             target="_blank"
             >Prof. Fernandez</a
-          >), Graduate Advisor of the Metabolism of Cities Living Lab (<a
-            href="https://metabolismofcities-llab.org/metabolism-of-cities-living-lab-moc-llab/"
-            target="_blank"
-            >MOC-LLAB</a
-          >), for her guidance and encouragement during the development of this
-          project. I additionally extend my appreciation to Dr. Naveen K. Vaidya
-          (<a
+          >), Graduate Advisor of the Big Data Analytics Program, for her
+          guidance and encouragement during the development of this project. I
+          additionally extend my appreciation to Dr. Naveen K. Vaidya (<a
             href="https://www.linkedin.com/in/dr-naveen-k-vaidya-21759719/"
             target="_blank"
             >Prof. Vaidya</a
@@ -830,7 +725,8 @@
             target="_blank"
             >DiMoLab</a
           >) for their influential work in infectious-disease modeling, which
-          helped shape the analytical direction of this capstone.
+          helped shape the analytical direction and motivation behind this
+          capstone project.
         </p>
       </div>
     </section>
@@ -839,18 +735,11 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <p>
-          &copy; <span id="year"></span> Dengue Forecasting in Southern Taiwan –
-          SDSU Big Data Analytics Capstone Project.
+          © 2025 Aichu Tan. MIT License • Open Source • SDSU Big Data Analytics
+          Capstone.
         </p>
-        <p class="footer-small">
-          Built with HTML, CSS, ArcGIS Online, and Streamlit.
-        </p>
+        <p>Built with HTML, CSS, ArcGIS Online, Supabase, and Streamlit.</p>
       </div>
     </footer>
-
-    <script>
-      // Set current year in footer
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

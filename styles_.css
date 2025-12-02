@@ -328,6 +328,18 @@ body {
   color: white !important;
 }
 
+.pipeline-image-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.pipeline-image {
+  width: 90%;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
 /* ====== RESULTS VISUALS (CHARTS) ====== */
 .results-visuals {
   display: grid;
@@ -701,72 +713,4 @@ body {
   background: #f3f4f6;
   padding: 0.15rem 0.45rem;
   border-radius: 999px;
-}
-
-/* Pipeline layout */
-.pipeline-layout {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-  gap: 1.75rem 2.5rem;
-}
-
-@media (max-width: 900px) {
-  .pipeline-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-.pipeline-step {
-  position: relative;
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 1.25rem 1.25rem 1.25rem 3rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.pipeline-step h4 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.pipeline-step ul {
-  margin: 0;
-  padding-left: 1.2rem;
-}
-
-.pipeline-badge {
-  position: absolute;
-  left: 1rem;
-  top: 1.2rem;
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 999px;
-  background: #047857; /* dark green accent; adjust to your theme */
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Optional: connecting line for vertical stepper feel on wide screens */
-@media (min-width: 900px) {
-  .overview-card {
-    min-height: 360px;
-  }
-
-  .pipeline-layout {
-    position: relative;
-  }
-
-  .pipeline-step {
-    margin-left: 0.5rem;
-  }
-
-  .pipeline-badge {
-    z-index: 1;
-  }
 }
