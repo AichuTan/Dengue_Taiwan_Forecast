@@ -169,6 +169,7 @@
         </p>
 
         <!-- 2.1 End-to-End Pipeline -->
+        <hr class="methods-divider" />
         <h3 class="results-subtitle">2.1 End-to-End Forecasting Pipeline</h3>
         <p>
           The workflow has four main stages: (1) raw data ingestion from Taiwan
@@ -216,15 +217,23 @@
         <p>
           Daily dengue, climate, and mosquito data are aggregated to weekly
           city-level time series to match epidemiological reporting cycles.
-          Missing case counts are treated as true zeros, meteorological gaps are
-          filled via time-based interpolation, and mosquito indices are
-          forward/backward filled between inspections. Implausible sentinel
-          values are removed and temperature consistency constraints (Tmin ≤
-          Tmean ≤ Tmax) are enforced. For tree-based models, engineered lag
-          features (1, 2, 4, 8, 10, 11, 12, 15 weeks) are created for cases,
-          rainfall, temperature, humidity, windspeed, and BI/HI/CI. Continuous
-          variables are standardized with z-scores for Random Forest/XGBoost and
-          Min–Max scaled for deep learning models.
+          Missing dengue cases were treated as true zeros, climate gaps were
+          time-interpolated, and mosquito indices (BI/HI/CI), which are
+          collected infrequently, were forward- and backward-filled. Population
+          density was aligned by city and year, and quality checks removed
+          invalid values while enforcing temperature consistency (Tmin ≤ Tmean ≤
+          Tmax). Continuous variables were standardized for machine-learning
+          models and Min-Max scaled for deep-learning architectures. To capture
+          dengue's delayed response to environmental conditions, I engineered
+          lag features across multiple horizons (1-15 weeks) for rainfall,
+          temperature, humidity, windspeed, mosquito indices, and past case
+          counts. These lags reflect immediate weather effects, mosquito
+          development cycles, and longer seasonal patterns. Tree-based models
+          (Random Forest, XGBoost) used these engineered lags directly, while
+          deep-learning models learned temporal structure through sequential
+          inputs, a 24-week sliding window for LSTM and a hybrid
+          LSTM-Transformer design that captures both short-term variations and
+          long-range climatic trends.
         </p>
 
         <hr class="methods-divider" />
